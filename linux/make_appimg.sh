@@ -24,6 +24,6 @@ if [ -n "$STEAM" ]; then
   cp "$STEAM/libsteam_api.so" "${MESON_INSTALL_PREFIX}/usr/lib"
 fi
 
-cp ${MESON_INSTALL_PREFIX}/share/mkxp-z/* ${MESON_INSTALL_PREFIX}
+cp ${MESON_INSTALL_PREFIX}/share/mke/* ${MESON_INSTALL_PREFIX}
 rm -rf ${MESON_INSTALL_PREFIX}/share
 $APPIMAGETOOL ${MESON_INSTALL_PREFIX}

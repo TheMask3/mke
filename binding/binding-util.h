@@ -1,29 +1,29 @@
 /*
  ** binding-util.h
  **
- ** This file is part of mkxp.
+ ** This file is part of mke.
  **
  ** Copyright (C) 2013 Jonas Kulla <Nyocurio@gmail.com>
  **
- ** mkxp is free software: you can redistribute it and/or modify
+ ** mke is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
  ** the Free Software Foundation, either version 2 of the License, or
  ** (at your option) any later version.
  **
- ** mkxp is distributed in the hope that it will be useful,
+ ** mke is distributed in the hope that it will be useful,
  ** but WITHOUT ANY WARRANTY; without even the implied warranty of
  ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  ** GNU General Public License for more details.
  **
  ** You should have received a copy of the GNU General Public License
- ** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+ ** along with mke.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef BINDING_UTIL_H
 #define BINDING_UTIL_H
 
 #include <ruby.h>
-#ifndef MKXPZ_LEGACY_RUBY
+#ifndef MKE_LEGACY_RUBY
 #include <ruby/version.h>
 #else
 #include <version.h>
@@ -47,7 +47,7 @@ enum RbException {
     Reset,
     PHYSFS,
     SDL,
-    MKXP,
+    MKE,
     
     ErrnoENOENT,
     
@@ -80,7 +80,7 @@ void raiseRbExc(const Exception &exc);
 
 /* 2.1 has added a new field (flags) to rb_data_type_t */
 #if RAPI_FULL >= 210
-/* TODO: can mkxp use RUBY_TYPED_FREE_IMMEDIATELY here? */
+/* TODO: can mke use RUBY_TYPED_FREE_IMMEDIATELY here? */
 #define DEF_TYPE_FLAGS 0
 #else
 #define DEF_TYPE_FLAGS
@@ -203,7 +203,7 @@ template <class C> inline C *getPrivateData(VALUE self) {
     C *c = static_cast<C *>(DATA_PTR(self));
 #endif
     if (!c) {
-        raiseRbExc(Exception(Exception::MKXPError, "No instance data for variable (missing call to super?)"));
+        raiseRbExc(Exception(Exception::MKEError, "No instance data for variable (missing call to super?)"));
     }
     return c;
 }

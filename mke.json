@@ -3,7 +3,7 @@
     //
     // About filesystem paths specified in this config:
     // The "gameFolder" path is resolved either relative
-    // to the directory containing the mkxp executable
+    // to the directory containing the mke executable
     // (the default behavior), or relative to the current
     // working directory (when compiled with
     // -DWORKDIR_CURRENT). All other paths are resolved
@@ -11,22 +11,22 @@
     // encrypted archives.
     
     // Some influential environment variables, set them to either "1" or "0":
-    // "MKXPZ_WINDOWS_CONSOLE"
+    // "MKE_WINDOWS_CONSOLE"
     //     - Enables/disables the extra console window on Windows. It appears by
-    //       default whenever mkxp-z is started in debug mode.
-    // "MKXPZ_MACOS_METAL"
+    //       default whenever mke is started in debug mode.
+    // "MKE_MACOS_METAL"
     //     - Setting this will influence the rendering backend used.
     //       Probably not a good idea to mess with it unless you have some kind of issue.
     //       OpenGL is default on x86, and Metal is the default on Apple Silicon.
     //       This takes priority over the config option if it's set.
-    // "MKXPZ_FOLDER_SELECT"
+    // "MKE_FOLDER_SELECT"
     //     - Allows the manual selection of the game's folder at startup.
     //       Only works on macOS at the moment.
 
 
     // Specify the RGSS version to run under.
     // Possible values are 0, 1, 2, 3. If set to 0,
-    // mkxp will try to guess the required version
+    // mke will try to guess the required version
     // based on the game files found in gameFolder.
     // If this fails, the version defaults to 1.
     // (default: 0)
@@ -168,7 +168,7 @@
 
 
     // Limit the maximum size (width, height) of
-    // most textures mkxp will create (exceptions are
+    // most textures mke will create (exceptions are
     // rendering backbuffers and similar).
     // If set to 0, the hardware maximum is used.
     // This is useful for recording traces that can
@@ -232,11 +232,11 @@
 
 
     // Organisation / company and application / game
-    // name to build the directory path where mkxp
+    // name to build the directory path where mke
     // will store game specific data (eg. key bindings).
-    // If not specified, mkxp-z will use a folder based
+    // If not specified, mke will use a folder based
     // on the name of the game, if possible, defaulting
-    // to "." for Org and "mkxp-z" for App otherwise.
+    // to "." for Org and "mke" for App otherwise.
     // (default: none)
     //
     // "dataPathOrg": "mycompany",
@@ -301,7 +301,7 @@
     //             "Times New Roman>Liberation Serif"]
 
 
-    // Because mkxp is usually distributed as a stand alone
+    // Because mke is usually distributed as a stand alone
     // build, no predefined load paths are initialized
     // ($:, $LOAD_PATH) in the MRI backend. With this option,
     // they can be specified manually (eg. when using a system
@@ -365,7 +365,7 @@
 
     // The Windows game executable name minus ".exe". By default
     // this is "Game", but some developers manually rename it.
-    // mkxp needs this name because both the .ini (game
+    // mke needs this name because both the .ini (game
     // configuration) and .rgssad (encrypted data archive) must
     // carry the same name minus their extension, and we cannot
     // guess the executable's name.

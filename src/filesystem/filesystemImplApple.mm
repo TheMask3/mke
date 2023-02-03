@@ -86,7 +86,7 @@ std::string filesystemImpl::contentsOfAssetAsString(const char *baseName, const 
     
     // This should never fail
     if (fileContents == nil)
-        throw Exception(Exception::MKXPError, "Failed to read file at %s", path.UTF8String);
+        throw Exception(Exception::MKEError, "Failed to read file at %s", path.UTF8String);
     
     return std::string(fileContents.UTF8String);
 

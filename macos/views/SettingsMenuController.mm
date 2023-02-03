@@ -1,6 +1,6 @@
 //
 //  SettingsMenuController.m
-//  mkxp-z
+//  mke
 //
 //  Created by ゾロアーク on 1/15/21.
 //
@@ -55,7 +55,7 @@ typedef NSMutableArray<NSNumber*> BindingIndexArray;
     int sysver;
     
     
-    // MKXP Keybindings
+    // MKE Keybindings
     BDescVec *binds;
     int currentButtonCode;
     

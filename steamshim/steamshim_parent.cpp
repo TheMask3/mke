@@ -658,11 +658,11 @@ static void deinitSteamworks(void) {
 
 static int mainline(void) {
 
-#if (defined(MKXPZ_BUILD_XCODE) && STEAM_APPID != 0) || \
-    (!defined(MKXPZ_BUILD_XCODE) && defined(STEAM_APPID))
+#if (defined(MKE_BUILD_XCODE) && STEAM_APPID != 0) || \
+    (!defined(MKE_BUILD_XCODE) && defined(STEAM_APPID))
   if (SteamAPI_RestartAppIfNecessary(STEAM_APPID))
     return 0;
-#elif defined(MKXPZ_BUILD_XCODE)
+#elif defined(MKE_BUILD_XCODE)
     chdir(appResourcePath().c_str());
 #endif
 

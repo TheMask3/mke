@@ -1,4 +1,4 @@
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
 #include "binding-util.h"
 #include "steamshim_child.h"
 

@@ -1,25 +1,25 @@
 /*
 ** main.cpp
 **
-** This file is part of mkxp.
+** This file is part of mke.
 **
 ** Copyright (C) 2013 Jonas Kulla <Nyocurio@gmail.com>
 **
-** mkxp is free software: you can redistribute it and/or modify
+** mke is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
 ** the Free Software Foundation, either version 2 of the License, or
 ** (at your option) any later version.
 **
-** mkxp is distributed in the hope that it will be useful,
+** mke is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ** GNU General Public License for more details.
 **
 ** You should have received a copy of the GNU General Public License
-** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+** along with mke.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
 #include "icon.png.xxd"
 #endif
 
@@ -54,7 +54,7 @@
 #include "util/win-consoleutils.h"
 
 // Try to work around buggy GL drivers that tend to be in Optimus laptops
-// by forcing MKXP to use the dedicated card instead of the integrated one
+// by forcing MKE to use the dedicated card instead of the integrated one
 #include <windows.h>
 extern "C" {
 __declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
@@ -62,19 +62,19 @@ __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
 }
 #endif
 
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
 #include "steamshim_child.h"
 #endif
 
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
 #include <Availability.h>
 #include "TouchBar.h"
 #if __MAC_OS_X_VERSION_MAX_ALLOWED < __MAC_10_15
-#define MKXPZ_INIT_GL_LATER
+#define MKE_INIT_GL_LATER
 #endif
 #endif
 
-#ifndef MKXPZ_INIT_GL_LATER
+#ifndef MKE_INIT_GL_LATER
 #define GLINIT_SHOWERROR(s) showInitError(s)
 #else
 #define GLINIT_SHOWERROR(s) rgssThreadError(threadData, s)
@@ -119,7 +119,7 @@ static SDL_GLContext initGL(SDL_Window *win, Config &conf,
 int rgssThreadFun(void *userdata) {
   RGSSThreadData *threadData = static_cast<RGSSThreadData *>(userdata);
 
-#ifdef MKXPZ_INIT_GL_LATER
+#ifdef MKE_INIT_GL_LATER
   threadData->glContext =
       initGL(threadData->window, threadData->config, threadData);
   if (!threadData->glContext)
@@ -178,17 +178,17 @@ static void rgssThreadError(RGSSThreadData *rtData, const std::string &msg) {
 
 static void showInitError(const std::string &msg) {
   Debug() << msg;
-  SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "mkxp-z", msg.c_str(), 0);
+  SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "mke", msg.c_str(), 0);
 }
 
 static void setupWindowIcon(const Config &conf, SDL_Window *win) {
   SDL_RWops *iconSrc;
 
   if (conf.iconPath.empty())
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
     iconSrc = SDL_RWFromConstMem(___assets_icon_png, ___assets_icon_png_len);
 #else
-    iconSrc = SDL_RWFromFile(mkxp_fs::getPathForAsset("icon", "png").c_str(), "rb");
+    iconSrc = SDL_RWFromFile(mke_fs::getPathForAsset("icon", "png").c_str(), "rb");
 #endif
   else
     iconSrc = SDL_RWFromFile(conf.iconPath.c_str(), "rb");
@@ -230,9 +230,9 @@ int main(int argc, char *argv[]) {
     }
 #endif
     if (!dataDir[0]) {
-        strncpy(dataDir, mkxp_fs::getDefaultGameRoot().c_str(), sizeof(dataDir));
+        strncpy(dataDir, mke_fs::getDefaultGameRoot().c_str(), sizeof(dataDir));
     }
-    mkxp_fs::setCurrentDirectory(dataDir);
+    mke_fs::setCurrentDirectory(dataDir);
 #endif
     
     /* now we load the config */
@@ -253,7 +253,7 @@ int main(int argc, char *argv[]) {
     }
 #endif
 
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
     if (!STEAMSHIM_init()) {
       showInitError("Failed to initialize Steamworks. The application cannot "
                     "continue launching.");
@@ -274,7 +274,7 @@ int main(int argc, char *argv[]) {
                     SDL_GetError());
       SDL_Quit();
 
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
       STEAMSHIM_deinit();
 #endif
 
@@ -287,7 +287,7 @@ int main(int argc, char *argv[]) {
       IMG_Quit();
       SDL_Quit();
 
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
       STEAMSHIM_deinit();
 #endif
 
@@ -301,7 +301,7 @@ int main(int argc, char *argv[]) {
       IMG_Quit();
       SDL_Quit();
 
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
       STEAMSHIM_deinit();
 #endif
 
@@ -333,7 +333,7 @@ int main(int argc, char *argv[]) {
 
     // LoadLibrary properly initializes EGL, it won't work otherwise.
     // Doesn't completely do it though, needs a small patch to SDL
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
     SDL_setenv("ANGLE_DEFAULT_PLATFORM", (conf.preferMetalRenderer) ? "metal" : "opengl", true);
     SDL_GL_LoadLibrary("@rpath/libEGL.dylib");
 #endif
@@ -346,20 +346,20 @@ int main(int argc, char *argv[]) {
     if (!win) {
       showInitError(std::string("Error creating window: ") + SDL_GetError());
 
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
       STEAMSHIM_deinit();
 #endif
       return 0;
     }
     
-#if defined(MKXPZ_BUILD_XCODE)
+#if defined(MKE_BUILD_XCODE)
 #define DEBUG_FSELECT_MSG "Select the folder from which to load game files. This is the folder containing the game's INI."
 #define DEBUG_FSELECT_PROMPT "Load Game"
     if (conf.manualFolderSelect) {
-        std::string dataDirStr = mkxp_fs::selectPath(win, DEBUG_FSELECT_MSG, DEBUG_FSELECT_PROMPT);
+        std::string dataDirStr = mke_fs::selectPath(win, DEBUG_FSELECT_MSG, DEBUG_FSELECT_PROMPT);
         if (!dataDirStr.empty()) {
             conf.gameFolder = dataDirStr;
-            mkxp_fs::setCurrentDirectory(dataDirStr.c_str());
+            mke_fs::setCurrentDirectory(dataDirStr.c_str());
             Debug() << "Current directory set to" << dataDirStr;
             conf.read(argc, argv);
             conf.readGameINI();
@@ -384,7 +384,7 @@ int main(int argc, char *argv[]) {
       IMG_Quit();
       SDL_Quit();
 
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
       STEAMSHIM_deinit();
 #endif
       return 0;
@@ -399,14 +399,14 @@ int main(int argc, char *argv[]) {
 
     EventThread eventThread;
 
-#ifndef MKXPZ_INIT_GL_LATER
+#ifndef MKE_INIT_GL_LATER
     SDL_GLContext glCtx = initGL(win, conf, 0);
 #else
     SDL_GLContext glCtx = NULL;
 #endif
 
     RGSSThreadData rtData(&eventThread, argv[0], win, alcDev, mode.refresh_rate,
-                          mkxp_sys::getScalingFactor(), conf, glCtx);
+                          mke_sys::getScalingFactor(), conf, glCtx);
 
     int winW, winH, drwW, drwH;
     SDL_GetWindowSize(win, &winW, &winH);
@@ -418,7 +418,7 @@ int main(int argc, char *argv[]) {
     /* Load and post key bindings */
     rtData.bindingUpdateMsg.post(loadBindings(conf));
     
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
     // Create Touch Bar
     initTouchBar(win, conf);
 #endif
@@ -476,7 +476,7 @@ int main(int argc, char *argv[]) {
       WSACleanup();
 #endif
 
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
     STEAMSHIM_deinit();
 #endif
     Sound_Quit();
@@ -515,7 +515,7 @@ static SDL_GLContext initGL(SDL_Window *win, Config &conf,
 
 // This breaks scaling for Retina screens.
 // Using Metal should be rendering this irrelevant anyway, hopefully
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
   if (!conf.enableBlitting)
     gl.BlitFramebuffer = 0;
 #endif

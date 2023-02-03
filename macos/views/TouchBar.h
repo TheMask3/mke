@@ -1,6 +1,6 @@
 //
 //  TouchBar.h
-//  mkxp-z
+//  mke
 //
 //  Created by ゾロア on 1/14/22.
 //
@@ -16,8 +16,8 @@
 #include "config.h"
 
 #ifdef __OBJC__
-@interface MKXPZTouchBar : NSTouchBar <NSTouchBarDelegate>
-+(MKXPZTouchBar*)sharedTouchBar;
+@interface MKETouchBar : NSTouchBar <NSTouchBarDelegate>
++(MKETouchBar*)sharedTouchBar;
 @end
 #endif
 

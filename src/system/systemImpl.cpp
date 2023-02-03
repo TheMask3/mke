@@ -60,7 +60,7 @@ std::string systemImpl::getUserName() {
 }
     
 bool systemImpl::isWine() {
-#if MKXPZ_PLATFORM != MKXPZ_PLATFORM_WINDOWS
+#if MKE_PLATFORM != MKE_PLATFORM_WINDOWS
     return false;
 #else
     void *ntdll = SDL_LoadObject("ntdll.dll");
@@ -73,7 +73,7 @@ bool systemImpl::isRosetta() {
 }
 
 systemImpl::WineHostType systemImpl::getRealHostType() {
-#if MKXPZ_PLATFORM != MKXPZ_PLATFORM_WINDOWS
+#if MKE_PLATFORM != MKE_PLATFORM_WINDOWS
     return WineHostType::Linux;
 #else
     void *ntdll = SDL_LoadObject("ntdll.dll");

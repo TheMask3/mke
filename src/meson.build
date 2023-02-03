@@ -31,7 +31,7 @@ if get_option('enable-https') == true
     openssl = dependency('openssl', required: false, static: build_static)
     if openssl.found() == true
         global_dependencies += openssl
-        global_args += '-DMKXPZ_SSL'
+        global_args += '-DMKE_SSL'
         if host_system == 'windows'
             global_link_args += '-lcrypt32'
         endif
@@ -68,7 +68,7 @@ if openal.type_name() == 'pkgconfig'
     endif
 endif
 
-global_args += '-DMKXPZ_ALCDEVICE=' + alcdev_struct
+global_args += '-DMKE_ALCDEVICE=' + alcdev_struct
 
 
 global_include_dirs += include_directories('.',
@@ -98,7 +98,7 @@ if get_option('shared_fluid') == true
 endif
 
 if get_option('cjk_fallback_font') == true
-    add_project_arguments('-DMKXPZ_CJK_FONT', language: 'cpp')
+    add_project_arguments('-DMKE_CJK_FONT', language: 'cpp')
 endif
 
 main_source = files(

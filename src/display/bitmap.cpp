@@ -1,22 +1,22 @@
 /*
  ** bitmap.cpp
  **
- ** This file is part of mkxp.
+ ** This file is part of mke.
  **
  ** Copyright (C) 2013 Jonas Kulla <Nyocurio@gmail.com>
  **
- ** mkxp is free software: you can redistribute it and/or modify
+ ** mke is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
  ** the Free Software Foundation, either version 2 of the License, or
  ** (at your option) any later version.
  **
- ** mkxp is distributed in the hope that it will be useful,
+ ** mke is distributed in the hope that it will be useful,
  ** but WITHOUT ANY WARRANTY; without even the implied warranty of
  ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  ** GNU General Public License for more details.
  **
  ** You should have received a copy of the GNU General Public License
- ** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+ ** along with mke.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "bitmap.h"
@@ -61,21 +61,21 @@ extern "C" {
 #define GUARD_MEGA \
 { \
 if (p->megaSurface) \
-throw Exception(Exception::MKXPError, \
+throw Exception(Exception::MKEError, \
 "Operation not supported for mega surfaces"); \
 }
 
 #define GUARD_ANIMATED \
 { \
 if (p->animation.enabled) \
-throw Exception(Exception::MKXPError, \
+throw Exception(Exception::MKEError, \
 "Operation not supported for animated bitmaps"); \
 }
 
 #define GUARD_UNANIMATED \
 { \
 if (!p->animation.enabled) \
-throw Exception(Exception::MKXPError, \
+throw Exception(Exception::MKEError, \
 "Operation not supported for static bitmaps"); \
 }
 
@@ -486,7 +486,7 @@ Bitmap::Bitmap(const char *filename)
         
         if (handler.gif->width >= (uint32_t)glState.caps.maxTexSize || handler.gif->height > (uint32_t)glState.caps.maxTexSize)
         {
-            throw new Exception(Exception::MKXPError, "Animation too large (%ix%i, max %ix%i)",
+            throw new Exception(Exception::MKEError, "Animation too large (%ix%i, max %ix%i)",
                                 handler.gif->width, handler.gif->height, glState.caps.maxTexSize, glState.caps.maxTexSize);
         }
         
@@ -542,7 +542,7 @@ Bitmap::Bitmap(const char *filename)
                     delete handler.gif;
                     delete handler.gif_data;
                     
-                    throw Exception(Exception::MKXPError, "Failed to decode GIF frame %i out of %i (Status %i)",
+                    throw Exception(Exception::MKEError, "Failed to decode GIF frame %i out of %i (Status %i)",
                                     i + 1, fcount_partial, status);
                 }
             }
@@ -1306,7 +1306,7 @@ void Bitmap::replaceRaw(void *pixel_data, int size)
     int requiredsize = w*h*4;
     
     if (size != w*h*4)
-        throw Exception(Exception::MKXPError, "Replacement bitmap data is not large enough (given %i bytes, need %i)", size, requiredsize);
+        throw Exception(Exception::MKEError, "Replacement bitmap data is not large enough (given %i bytes, need %i)", size, requiredsize);
     
     TEX::bind(getGLTypes().tex);
     TEX::uploadImage(w, h, pixel_data, GL_RGBA);
@@ -1934,7 +1934,7 @@ int Bitmap::addFrame(Bitmap &source, int position)
     GUARD_MEGA;
     
     if (source.height() != height() || source.width() != width())
-        throw Exception(Exception::MKXPError, "Animations with varying dimensions are not supported (%ix%i vs %ix%i)",
+        throw Exception(Exception::MKEError, "Animations with varying dimensions are not supported (%ix%i vs %ix%i)",
                         source.width(), source.height(), width(), height());
     
     TEXFBO newframe = shState->texPool().request(source.width(), source.height());

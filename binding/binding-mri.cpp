@@ -1,22 +1,22 @@
 /*
  ** binding-mri.cpp
  **
- ** This file is part of mkxp.
+ ** This file is part of mke.
  **
  ** Copyright (C) 2013 Jonas Kulla <Nyocurio@gmail.com>
  **
- ** mkxp is free software: you can redistribute it and/or modify
+ ** mke is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
  ** the Free Software Foundation, either version 2 of the License, or
  ** (at your option) any later version.
  **
- ** mkxp is distributed in the hope that it will be useful,
+ ** mke is distributed in the hope that it will be useful,
  ** but WITHOUT ANY WARRANTY; without even the implied warranty of
  ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  ** GNU General Public License for more details.
  **
  ** You should have received a copy of the GNU General Public License
- ** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+ ** along with mke.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "audio/audio.h"
@@ -94,59 +94,59 @@ void graphicsBindingInit();
 
 void fileIntBindingInit();
 
-#ifdef MKXPZ_MINIFFI
+#ifdef MKE_MINIFFI
 void MiniFFIBindingInit();
 #endif
 
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
 void CUSLBindingInit();
 #endif
 
 void httpBindingInit();
 
-RB_METHOD(mkxpDelta);
+RB_METHOD(mkeDelta);
 RB_METHOD(mriPrint);
 RB_METHOD(mriP);
-RB_METHOD(mkxpDataDirectory);
-RB_METHOD(mkxpSetTitle);
-RB_METHOD(mkxpGetTitle);
-RB_METHOD(mkxpDesensitize);
-RB_METHOD(mkxpPuts);
+RB_METHOD(mkeDataDirectory);
+RB_METHOD(mkeSetTitle);
+RB_METHOD(mkeGetTitle);
+RB_METHOD(mkeDesensitize);
+RB_METHOD(mkePuts);
 
-RB_METHOD(mkxpPlatform);
-RB_METHOD(mkxpIsMacHost);
-RB_METHOD(mkxpIsWindowsHost);
-RB_METHOD(mkxpIsLinuxHost);
-RB_METHOD(mkxpIsUsingRosetta);
-RB_METHOD(mkxpIsUsingWine);
-RB_METHOD(mkxpIsReallyMacHost);
-RB_METHOD(mkxpIsReallyLinuxHost);
-RB_METHOD(mkxpIsReallyWindowsHost);
+RB_METHOD(mkePlatform);
+RB_METHOD(mkeIsMacHost);
+RB_METHOD(mkeIsWindowsHost);
+RB_METHOD(mkeIsLinuxHost);
+RB_METHOD(mkeIsUsingRosetta);
+RB_METHOD(mkeIsUsingWine);
+RB_METHOD(mkeIsReallyMacHost);
+RB_METHOD(mkeIsReallyLinuxHost);
+RB_METHOD(mkeIsReallyWindowsHost);
 
-RB_METHOD(mkxpUserLanguage);
-RB_METHOD(mkxpUserName);
-RB_METHOD(mkxpGameTitle);
-RB_METHOD(mkxpPowerState);
-RB_METHOD(mkxpSettingsMenu);
-RB_METHOD(mkxpCpuCount);
-RB_METHOD(mkxpSystemMemory);
-RB_METHOD(mkxpReloadPathCache);
-RB_METHOD(mkxpAddPath);
-RB_METHOD(mkxpRemovePath);
-RB_METHOD(mkxpLaunch);
+RB_METHOD(mkeUserLanguage);
+RB_METHOD(mkeUserName);
+RB_METHOD(mkeGameTitle);
+RB_METHOD(mkePowerState);
+RB_METHOD(mkeSettingsMenu);
+RB_METHOD(mkeCpuCount);
+RB_METHOD(mkeSystemMemory);
+RB_METHOD(mkeReloadPathCache);
+RB_METHOD(mkeAddPath);
+RB_METHOD(mkeRemovePath);
+RB_METHOD(mkeLaunch);
 
-RB_METHOD(mkxpGetJSONSetting);
-RB_METHOD(mkxpSetJSONSetting);
-RB_METHOD(mkxpGetAllJSONSettings);
+RB_METHOD(mkeGetJSONSetting);
+RB_METHOD(mkeSetJSONSetting);
+RB_METHOD(mkeGetAllJSONSettings);
 
-RB_METHOD(mkxpSetDefaultFontFamily);
+RB_METHOD(mkeSetDefaultFontFamily);
 
 RB_METHOD(mriRgssMain);
 RB_METHOD(mriRgssStop);
 RB_METHOD(_kernelCaller);
 
-RB_METHOD(mkxpStringToUTF8);
-RB_METHOD(mkxpStringToUTF8Bang);
+RB_METHOD(mkeStringToUTF8);
+RB_METHOD(mkeStringToUTF8Bang);
 
 VALUE json2rb(json5pp::value const &v);
 json5pp::value rb2json(VALUE v);
@@ -174,11 +174,11 @@ static void mriBindingInit() {
     
     fileIntBindingInit();
     
-#ifdef MKXPZ_MINIFFI
+#ifdef MKE_MINIFFI
     MiniFFIBindingInit();
 #endif
     
-#ifdef MKXPZ_STEAM
+#ifdef MKE_STEAM
     CUSLBindingInit();
 #endif
     
@@ -196,7 +196,7 @@ static void mriBindingInit() {
         _rb_define_module_function(rb_mKernel, "print", mriPrint);
         _rb_define_module_function(rb_mKernel, "p", mriP);
         
-        rb_define_alias(rb_singleton_class(rb_mKernel), "_mkxp_kernel_caller_alias",
+        rb_define_alias(rb_singleton_class(rb_mKernel), "_mke_kernel_caller_alias",
                         "caller");
         _rb_define_module_function(rb_mKernel, "caller", _kernelCaller);
     }
@@ -211,52 +211,52 @@ static void mriBindingInit() {
         assert(!"unreachable");
     
     VALUE mod = rb_define_module("System");
-    _rb_define_module_function(mod, "delta", mkxpDelta);
-    _rb_define_module_function(mod, "uptime", mkxpDelta);
-    _rb_define_module_function(mod, "data_directory", mkxpDataDirectory);
-    _rb_define_module_function(mod, "set_window_title", mkxpSetTitle);
-    _rb_define_module_function(mod, "window_title", mkxpGetTitle);
-    _rb_define_module_function(mod, "window_title=", mkxpSetTitle);
-    _rb_define_module_function(mod, "show_settings", mkxpSettingsMenu);
-    _rb_define_module_function(mod, "puts", mkxpPuts);
-    _rb_define_module_function(mod, "desensitize", mkxpDesensitize);
-    _rb_define_module_function(mod, "platform", mkxpPlatform);
+    _rb_define_module_function(mod, "delta", mkeDelta);
+    _rb_define_module_function(mod, "uptime", mkeDelta);
+    _rb_define_module_function(mod, "data_directory", mkeDataDirectory);
+    _rb_define_module_function(mod, "set_window_title", mkeSetTitle);
+    _rb_define_module_function(mod, "window_title", mkeGetTitle);
+    _rb_define_module_function(mod, "window_title=", mkeSetTitle);
+    _rb_define_module_function(mod, "show_settings", mkeSettingsMenu);
+    _rb_define_module_function(mod, "puts", mkePuts);
+    _rb_define_module_function(mod, "desensitize", mkeDesensitize);
+    _rb_define_module_function(mod, "platform", mkePlatform);
     
-    _rb_define_module_function(mod, "is_mac?", mkxpIsMacHost);
-    _rb_define_module_function(mod, "is_rosetta?", mkxpIsUsingRosetta);
+    _rb_define_module_function(mod, "is_mac?", mkeIsMacHost);
+    _rb_define_module_function(mod, "is_rosetta?", mkeIsUsingRosetta);
     
-    _rb_define_module_function(mod, "is_linux?", mkxpIsLinuxHost);
+    _rb_define_module_function(mod, "is_linux?", mkeIsLinuxHost);
     
-    _rb_define_module_function(mod, "is_windows?", mkxpIsWindowsHost);
-    _rb_define_module_function(mod, "is_wine?", mkxpIsUsingWine);
-    _rb_define_module_function(mod, "is_really_mac?", mkxpIsReallyMacHost);
-    _rb_define_module_function(mod, "is_really_linux?", mkxpIsReallyLinuxHost);
-    _rb_define_module_function(mod, "is_really_windows?", mkxpIsReallyWindowsHost);
+    _rb_define_module_function(mod, "is_windows?", mkeIsWindowsHost);
+    _rb_define_module_function(mod, "is_wine?", mkeIsUsingWine);
+    _rb_define_module_function(mod, "is_really_mac?", mkeIsReallyMacHost);
+    _rb_define_module_function(mod, "is_really_linux?", mkeIsReallyLinuxHost);
+    _rb_define_module_function(mod, "is_really_windows?", mkeIsReallyWindowsHost);
     
     
-    _rb_define_module_function(mod, "user_language", mkxpUserLanguage);
-    _rb_define_module_function(mod, "user_name", mkxpUserName);
-    _rb_define_module_function(mod, "game_title", mkxpGameTitle);
-    _rb_define_module_function(mod, "power_state", mkxpPowerState);
-    _rb_define_module_function(mod, "nproc", mkxpCpuCount);
-    _rb_define_module_function(mod, "memory", mkxpSystemMemory);
-    _rb_define_module_function(mod, "reload_cache", mkxpReloadPathCache);
-    _rb_define_module_function(mod, "mount", mkxpAddPath);
-    _rb_define_module_function(mod, "unmount", mkxpRemovePath);
-    _rb_define_module_function(mod, "launch", mkxpLaunch);
+    _rb_define_module_function(mod, "user_language", mkeUserLanguage);
+    _rb_define_module_function(mod, "user_name", mkeUserName);
+    _rb_define_module_function(mod, "game_title", mkeGameTitle);
+    _rb_define_module_function(mod, "power_state", mkePowerState);
+    _rb_define_module_function(mod, "nproc", mkeCpuCount);
+    _rb_define_module_function(mod, "memory", mkeSystemMemory);
+    _rb_define_module_function(mod, "reload_cache", mkeReloadPathCache);
+    _rb_define_module_function(mod, "mount", mkeAddPath);
+    _rb_define_module_function(mod, "unmount", mkeRemovePath);
+    _rb_define_module_function(mod, "launch", mkeLaunch);
     
-    _rb_define_module_function(mod, "default_font_family=", mkxpSetDefaultFontFamily);
+    _rb_define_module_function(mod, "default_font_family=", mkeSetDefaultFontFamily);
     
-    _rb_define_method(rb_cString, "to_utf8", mkxpStringToUTF8);
-    _rb_define_method(rb_cString, "to_utf8!", mkxpStringToUTF8Bang);
+    _rb_define_method(rb_cString, "to_utf8", mkeStringToUTF8);
+    _rb_define_method(rb_cString, "to_utf8!", mkeStringToUTF8Bang);
     
     VALUE cmod = rb_define_module("CFG");
-    _rb_define_module_function(cmod, "[]", mkxpGetJSONSetting);
-    _rb_define_module_function(cmod, "[]=", mkxpSetJSONSetting);
-    _rb_define_module_function(cmod, "to_hash", mkxpGetAllJSONSettings);
+    _rb_define_module_function(cmod, "[]", mkeGetJSONSetting);
+    _rb_define_module_function(cmod, "[]=", mkeSetJSONSetting);
+    _rb_define_module_function(cmod, "to_hash", mkeGetAllJSONSettings);
     
     /* Load global constants */
-    rb_gv_set("MKXP", Qtrue);
+    rb_gv_set("MKE", Qtrue);
     
     VALUE debug = rb_bool_new(shState->config().editor.debug);
     if (rgssVer == 1)
@@ -266,7 +266,7 @@ static void mriBindingInit() {
     
     rb_gv_set("BTEST", rb_bool_new(shState->config().editor.battleTest));
     
-    VALUE vers = rb_utf8_str_new_cstr(MKXPZ_VERSION);
+    VALUE vers = rb_utf8_str_new_cstr(MKE_VERSION);
     rb_str_freeze(vers);
     rb_define_const(mod, "VERSION", vers);
     
@@ -315,13 +315,13 @@ RB_METHOD(mriP) {
     return Qnil;
 }
 
-RB_METHOD(mkxpDelta) {
+RB_METHOD(mkeDelta) {
     RB_UNUSED_PARAM;
     
     return ULL2NUM(shState->runTime());
 }
 
-RB_METHOD(mkxpDataDirectory) {
+RB_METHOD(mkeDataDirectory) {
     RB_UNUSED_PARAM;
     
     const std::string &path = shState->config().customDataPath;
@@ -333,7 +333,7 @@ RB_METHOD(mkxpDataDirectory) {
     return ret;
 }
 
-RB_METHOD(mkxpSetTitle) {
+RB_METHOD(mkeSetTitle) {
     RB_UNUSED_PARAM;
     
     VALUE s;
@@ -344,7 +344,7 @@ RB_METHOD(mkxpSetTitle) {
     return s;
 }
 
-RB_METHOD(mkxpGetTitle) {
+RB_METHOD(mkeGetTitle) {
     RB_UNUSED_PARAM;
     
     rb_check_argc(argc, 0);
@@ -352,7 +352,7 @@ RB_METHOD(mkxpGetTitle) {
     return rb_utf8_str_new_cstr(SDL_GetWindowTitle(shState->sdlWindow()));
 }
 
-RB_METHOD(mkxpDesensitize) {
+RB_METHOD(mkeDesensitize) {
     RB_UNUSED_PARAM;
     
     VALUE filename;
@@ -363,7 +363,7 @@ RB_METHOD(mkxpDesensitize) {
                                 shState->fileSystem().desensitize(RSTRING_PTR(filename)));
 }
 
-RB_METHOD(mkxpPuts) {
+RB_METHOD(mkePuts) {
     RB_UNUSED_PARAM;
     
     const char *str;
@@ -374,22 +374,22 @@ RB_METHOD(mkxpPuts) {
     return Qnil;
 }
 
-RB_METHOD(mkxpPlatform) {
+RB_METHOD(mkePlatform) {
     RB_UNUSED_PARAM;
     
-#if MKXPZ_PLATFORM == MKXPZ_PLATFORM_MACOS
+#if MKE_PLATFORM == MKE_PLATFORM_MACOS
     std::string platform("macOS");
     
-    if (mkxp_sys::isRosetta())
+    if (mke_sys::isRosetta())
         platform += " (Rosetta)";
     
-#elif MKXPZ_PLATFORM == MKXPZ_PLATFORM_WINDOWS
+#elif MKE_PLATFORM == MKE_PLATFORM_WINDOWS
     std::string platform("Windows");
     
-    if (mkxp_sys::isWine()) {
+    if (mke_sys::isWine()) {
         platform += " (Wine - ";
-        switch (mkxp_sys::getRealHostType()) {
-            case mkxp_sys::WineHostType::Mac:
+        switch (mke_sys::getRealHostType()) {
+            case mke_sys::WineHostType::Mac:
                 platform += "macOS)";
                 break;
             default:
@@ -404,57 +404,57 @@ RB_METHOD(mkxpPlatform) {
     return rb_utf8_str_new_cstr(platform.c_str());
 }
 
-RB_METHOD(mkxpIsMacHost) {
+RB_METHOD(mkeIsMacHost) {
     RB_UNUSED_PARAM;
     
-    return rb_bool_new(MKXPZ_PLATFORM == MKXPZ_PLATFORM_MACOS);
+    return rb_bool_new(MKE_PLATFORM == MKE_PLATFORM_MACOS);
 }
 
-RB_METHOD(mkxpIsUsingRosetta) {
+RB_METHOD(mkeIsUsingRosetta) {
     RB_UNUSED_PARAM;
     
-    return rb_bool_new(mkxp_sys::isRosetta());
+    return rb_bool_new(mke_sys::isRosetta());
 }
 
-RB_METHOD(mkxpIsLinuxHost) {
+RB_METHOD(mkeIsLinuxHost) {
     RB_UNUSED_PARAM;
     
-    return rb_bool_new(MKXPZ_PLATFORM == MKXPZ_PLATFORM_LINUX);
+    return rb_bool_new(MKE_PLATFORM == MKE_PLATFORM_LINUX);
 }
 
-RB_METHOD(mkxpIsWindowsHost) {
+RB_METHOD(mkeIsWindowsHost) {
     RB_UNUSED_PARAM;
     
-    return rb_bool_new(MKXPZ_PLATFORM == MKXPZ_PLATFORM_WINDOWS);
+    return rb_bool_new(MKE_PLATFORM == MKE_PLATFORM_WINDOWS);
 }
 
-RB_METHOD(mkxpIsUsingWine) {
+RB_METHOD(mkeIsUsingWine) {
     RB_UNUSED_PARAM;
-    return rb_bool_new(mkxp_sys::isWine());
+    return rb_bool_new(mke_sys::isWine());
 }
 
-RB_METHOD(mkxpIsReallyMacHost) {
+RB_METHOD(mkeIsReallyMacHost) {
     RB_UNUSED_PARAM;
-    return rb_bool_new(mkxp_sys::getRealHostType() == mkxp_sys::WineHostType::Mac);
+    return rb_bool_new(mke_sys::getRealHostType() == mke_sys::WineHostType::Mac);
 }
 
-RB_METHOD(mkxpIsReallyLinuxHost) {
+RB_METHOD(mkeIsReallyLinuxHost) {
     RB_UNUSED_PARAM;
-    return rb_bool_new(mkxp_sys::getRealHostType() == mkxp_sys::WineHostType::Linux);
+    return rb_bool_new(mke_sys::getRealHostType() == mke_sys::WineHostType::Linux);
 }
 
-RB_METHOD(mkxpIsReallyWindowsHost) {
+RB_METHOD(mkeIsReallyWindowsHost) {
     RB_UNUSED_PARAM;
-    return rb_bool_new(mkxp_sys::getRealHostType() == mkxp_sys::WineHostType::Windows);
+    return rb_bool_new(mke_sys::getRealHostType() == mke_sys::WineHostType::Windows);
 }
 
-RB_METHOD(mkxpUserLanguage) {
+RB_METHOD(mkeUserLanguage) {
     RB_UNUSED_PARAM;
     
-    return rb_utf8_str_new_cstr(mkxp_sys::getSystemLanguage().c_str());
+    return rb_utf8_str_new_cstr(mke_sys::getSystemLanguage().c_str());
 }
 
-RB_METHOD(mkxpUserName) {
+RB_METHOD(mkeUserName) {
     RB_UNUSED_PARAM;
     
     // Using the Windows API isn't working with usernames that involve Unicode
@@ -463,17 +463,17 @@ RB_METHOD(mkxpUserName) {
     VALUE env = rb_const_get(rb_mKernel, rb_intern("ENV"));
     return rb_funcall(env, rb_intern("[]"), 1, rb_str_new_cstr("USERNAME"));
 #else
-    return rb_utf8_str_new_cstr(mkxp_sys::getUserName().c_str());
+    return rb_utf8_str_new_cstr(mke_sys::getUserName().c_str());
 #endif
 }
 
-RB_METHOD(mkxpGameTitle) {
+RB_METHOD(mkeGameTitle) {
     RB_UNUSED_PARAM;
     
     return rb_utf8_str_new_cstr(shState->config().game.title.c_str());
 }
 
-RB_METHOD(mkxpPowerState) {
+RB_METHOD(mkePowerState) {
     RB_UNUSED_PARAM;
     
     int secs, pct;
@@ -493,7 +493,7 @@ RB_METHOD(mkxpPowerState) {
     return hash;
 }
 
-RB_METHOD(mkxpSettingsMenu) {
+RB_METHOD(mkeSettingsMenu) {
     RB_UNUSED_PARAM;
     
     shState->eThread().requestSettingsMenu();
@@ -501,26 +501,26 @@ RB_METHOD(mkxpSettingsMenu) {
     return Qnil;
 }
 
-RB_METHOD(mkxpCpuCount) {
+RB_METHOD(mkeCpuCount) {
     RB_UNUSED_PARAM;
     
     return INT2NUM(SDL_GetCPUCount());
 }
 
-RB_METHOD(mkxpSystemMemory) {
+RB_METHOD(mkeSystemMemory) {
     RB_UNUSED_PARAM;
     
     return INT2NUM(SDL_GetSystemRAM());
 }
 
-RB_METHOD(mkxpReloadPathCache) {
+RB_METHOD(mkeReloadPathCache) {
     RB_UNUSED_PARAM;
     
     shState->fileSystem().reloadPathCache();
     return Qnil;
 }
 
-RB_METHOD(mkxpAddPath) {
+RB_METHOD(mkeAddPath) {
     RB_UNUSED_PARAM;
     
     VALUE path, mountpoint, reload;
@@ -542,7 +542,7 @@ RB_METHOD(mkxpAddPath) {
     return path;
 }
 
-RB_METHOD(mkxpRemovePath) {
+RB_METHOD(mkeRemovePath) {
     RB_UNUSED_PARAM;
     
     VALUE path, reload;
@@ -561,7 +561,7 @@ RB_METHOD(mkxpRemovePath) {
     return path;
 }
 
-RB_METHOD(mkxpSetDefaultFontFamily) {
+RB_METHOD(mkeSetDefaultFontFamily) {
     RB_UNUSED_PARAM;
     
     VALUE familyV;
@@ -574,7 +574,7 @@ RB_METHOD(mkxpSetDefaultFontFamily) {
     return Qnil;
 }
 
-RB_METHOD(mkxpStringToUTF8) {
+RB_METHOD(mkeStringToUTF8) {
     RB_UNUSED_PARAM;
     
     rb_check_argc(argc, 0);
@@ -585,7 +585,7 @@ RB_METHOD(mkxpStringToUTF8) {
     return rb_utf8_str_new(ret.c_str(), ret.length());
 }
 
-RB_METHOD(mkxpStringToUTF8Bang) {
+RB_METHOD(mkeStringToUTF8Bang) {
     RB_UNUSED_PARAM;
     
     rb_check_argc(argc, 0);
@@ -614,7 +614,7 @@ RB_METHOD(mkxpStringToUTF8Bang) {
 #define OPENARGS ""
 #endif
 
-RB_METHOD(mkxpLaunch) {
+RB_METHOD(mkeLaunch) {
     RB_UNUSED_PARAM;
     
     VALUE cmdname, args;
@@ -647,7 +647,7 @@ RB_METHOD(mkxpLaunch) {
     }
     
     if (std::system(command.c_str()) != 0) {
-        raiseRbExc(Exception(Exception::MKXPError, "Failed to launch \"%s\"", RSTRING_PTR(cmdname)));
+        raiseRbExc(Exception(Exception::MKEError, "Failed to launch \"%s\"", RSTRING_PTR(cmdname)));
     }
     
     return RUBY_Qnil;
@@ -679,7 +679,7 @@ void saveUserSettings() {
     rb_funcall(f, rb_intern("close"), 0);
 }
 
-RB_METHOD(mkxpGetJSONSetting) {
+RB_METHOD(mkeGetJSONSetting) {
     RB_UNUSED_PARAM;
     
     VALUE sname;
@@ -697,7 +697,7 @@ RB_METHOD(mkxpGetJSONSetting) {
     
 }
 
-RB_METHOD(mkxpSetJSONSetting) {
+RB_METHOD(mkeSetJSONSetting) {
     RB_UNUSED_PARAM;
     
     VALUE sname, svalue;
@@ -711,7 +711,7 @@ RB_METHOD(mkxpSetJSONSetting) {
     return Qnil;
 }
 
-RB_METHOD(mkxpGetAllJSONSettings) {
+RB_METHOD(mkeGetAllJSONSettings) {
     RB_UNUSED_PARAM;
     
     return json2rb(shState->config().raw);
@@ -777,7 +777,7 @@ RB_METHOD(_kernelCaller) {
     RB_UNUSED_PARAM;
     
     VALUE trace =
-    rb_funcall2(rb_mKernel, rb_intern("_mkxp_kernel_caller_alias"), 0, 0);
+    rb_funcall2(rb_mKernel, rb_intern("_mke_kernel_caller_alias"), 0, 0);
     
     if (!RB_TYPE_P(trace, RUBY_T_ARRAY))
         return trace;
@@ -1090,7 +1090,7 @@ static void mriBindingExecute() {
     RUBY_INIT_STACK;
     ruby_init();
     
-    std::vector<const char*> rubyArgsC{"mkxp-z"};
+    std::vector<const char*> rubyArgsC{"mke"};
     rubyArgsC.push_back("-e ");
     void *node;
     if (conf.jit.enabled) {
@@ -1151,8 +1151,8 @@ static void mriBindingExecute() {
     VALUE lpaths = rb_gv_get(":");
     rb_ary_clear(lpaths);
     
-#if defined(MKXPZ_BUILD_XCODE) && RAPI_MAJOR >= 2
-    std::string resPath = mkxp_fs::getResourcePath();
+#if defined(MKE_BUILD_XCODE) && RAPI_MAJOR >= 2
+    std::string resPath = mke_fs::getResourcePath();
     resPath += "/Ruby/" + std::to_string(RAPI_MAJOR) + "." + std::to_string(RAPI_MINOR) + ".0";
     rb_ary_push(lpaths, rb_str_new(resPath.c_str(), resPath.size()));
 #endif
@@ -1168,7 +1168,7 @@ static void mriBindingExecute() {
     }
 #ifndef WORKDIR_CURRENT
     else {
-        rb_ary_push(lpaths, rb_utf8_str_new_cstr(mkxp_fs::getCurrentDirectory().c_str()));
+        rb_ary_push(lpaths, rb_utf8_str_new_cstr(mke_fs::getCurrentDirectory().c_str()));
     }
 #endif
     

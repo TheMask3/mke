@@ -1,6 +1,6 @@
 //
 //  TouchBar.mm
-//  mkxp-z
+//  mke
 //
 //  Created by ゾロア on 1/14/22.
 //
@@ -18,9 +18,9 @@
 #import "display/graphics.h"
 #import "config.h"
 
-MKXPZTouchBar *_sharedTouchBar;
+MKETouchBar *_sharedTouchBar;
 
-@interface MKXPZTouchBar () {
+@interface MKETouchBar () {
     NSWindow *_parent;
     NSTextField *fpsLabel;
     NSSegmentedControl *functionKeys;
@@ -32,13 +32,13 @@ MKXPZTouchBar *_sharedTouchBar;
 -(void)setBarLayoutWithSettingsButton:(bool)showSettings andResetButton:(bool)showReset;
 @end
 
-@implementation MKXPZTouchBar
+@implementation MKETouchBar
 
 @synthesize gameTitle;
 
-+(MKXPZTouchBar*)sharedTouchBar {
++(MKETouchBar*)sharedTouchBar {
     if (!_sharedTouchBar)
-        _sharedTouchBar = [MKXPZTouchBar new];
+        _sharedTouchBar = [MKETouchBar new];
     return _sharedTouchBar;
 }
 
@@ -172,7 +172,7 @@ void initTouchBar(SDL_Window *win, Config &conf) {
     SDL_SysWMinfo windowinfo{};
     SDL_GetWindowWMInfo(win, &windowinfo);
     
-    MKXPZTouchBar *tb = MKXPZTouchBar.sharedTouchBar;
+    MKETouchBar *tb = MKETouchBar.sharedTouchBar;
     windowinfo.info.cocoa.window.touchBar = tb;
     tb.parent = windowinfo.info.cocoa.window;
     tb.gameTitle = @(conf.game.title.c_str());
@@ -180,5 +180,5 @@ void initTouchBar(SDL_Window *win, Config &conf) {
 }
 
 void updateTouchBarFPSDisplay(uint32_t value) {
-    [MKXPZTouchBar.sharedTouchBar updateFPSDisplay:value];
+    [MKETouchBar.sharedTouchBar updateFPSDisplay:value];
 }

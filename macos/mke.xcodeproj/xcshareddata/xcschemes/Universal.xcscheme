@@ -17,7 +17,7 @@
                BlueprintIdentifier = "3BC65D8A2584F3AD0063AFF1"
                BuildableName = "Z-universal.app"
                BlueprintName = "Z-universal"
-               ReferencedContainer = "container:mkxp-z.xcodeproj">
+               ReferencedContainer = "container:mke.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "3BC65D8A2584F3AD0063AFF1"
             BuildableName = "Z-universal.app"
             BlueprintName = "Z-universal"
-            ReferencedContainer = "container:mkxp-z.xcodeproj">
+            ReferencedContainer = "container:mke.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -58,7 +58,7 @@
       </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "MKXPZ_FOLDER_SELECT"
+            key = "MKE_FOLDER_SELECT"
             value = "1"
             isEnabled = "YES">
          </EnvironmentVariable>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "3BC65D8A2584F3AD0063AFF1"
             BuildableName = "Z-universal.app"
             BlueprintName = "Z-universal"
-            ReferencedContainer = "container:mkxp-z.xcodeproj">
+            ReferencedContainer = "container:mke.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

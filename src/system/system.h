@@ -10,16 +10,16 @@
 
 #include <string>
 
-#define MKXPZ_PLATFORM_WINDOWS 0
-#define MKXPZ_PLATFORM_MACOS 1
-#define MKXPZ_PLATFORM_LINUX 2
+#define MKE_PLATFORM_WINDOWS 0
+#define MKE_PLATFORM_MACOS 1
+#define MKE_PLATFORM_LINUX 2
 
 #ifdef __WIN32__
-#define MKXPZ_PLATFORM MKXPZ_PLATFORM_WINDOWS
+#define MKE_PLATFORM MKE_PLATFORM_WINDOWS
 #elif defined __APPLE__
-#define MKXPZ_PLATFORM MKXPZ_PLATFORM_MACOS
+#define MKE_PLATFORM MKE_PLATFORM_MACOS
 #elif defined __linux__
-#define MKXPZ_PLATFORM MKXPZ_PLATFORM_LINUX
+#define MKE_PLATFORM MKE_PLATFORM_LINUX
 #else
 #error "Can't identify platform."
 #endif
@@ -39,11 +39,11 @@ bool isRosetta();
 WineHostType getRealHostType();
 }
 
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
 void openSettingsWindow();
 bool isMetalSupported();
 #endif
 
-namespace mkxp_sys = systemImpl;
+namespace mke_sys = systemImpl;
 
 #endif /* system_h */

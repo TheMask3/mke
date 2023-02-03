@@ -1,6 +1,6 @@
 //
 //  steamshim_mac_helpers.h
-//  mkxp-z
+//  mke
 //
 //  Created by ゾロアーク on 1/3/21.
 //

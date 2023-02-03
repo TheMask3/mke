@@ -1,22 +1,22 @@
 /*
  ** filesystem-binding.cpp
  **
- ** This file is part of mkxp.
+ ** This file is part of mke.
  **
  ** Copyright (C) 2013 Jonas Kulla <Nyocurio@gmail.com>
  **
- ** mkxp is free software: you can redistribute it and/or modify
+ ** mke is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
  ** the Free Software Foundation, either version 2 of the License, or
  ** (at your option) any later version.
  **
- ** mkxp is distributed in the hope that it will be useful,
+ ** mke is distributed in the hope that it will be useful,
  ** but WITHOUT ANY WARRANTY; without even the implied warranty of
  ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  ** GNU General Public License for more details.
  **
  ** You should have received a copy of the GNU General Public License
- ** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+ ** along with mke.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "src/config.h"
@@ -261,7 +261,7 @@ RB_METHOD(_marshalLoad) {
     VALUE marsh = rb_const_get(rb_cObject, rb_intern("Marshal"));
     
     VALUE v[] = {port, utf8Proc};
-    return rb_funcall2(marsh, rb_intern("_mkxp_load_alias"), ARRAY_SIZE(v), v);
+    return rb_funcall2(marsh, rb_intern("_mke_load_alias"), ARRAY_SIZE(v), v);
 }
 #endif
 
@@ -293,7 +293,7 @@ void fileIntBindingInit() {
      * insert our utf8proc that ensures all read strings will be
      * UTF-8 encoded */
     VALUE marsh = rb_const_get(rb_cObject, rb_intern("Marshal"));
-    rb_define_alias(rb_singleton_class(marsh), "_mkxp_load_alias", "load");
+    rb_define_alias(rb_singleton_class(marsh), "_mke_load_alias", "load");
     _rb_define_module_function(marsh, "load", _marshalLoad);
 #endif
 }

@@ -1,22 +1,22 @@
 /*
  ** eventthread.cpp
  **
- ** This file is part of mkxp.
+ ** This file is part of mke.
  **
  ** Copyright (C) 2013 Jonas Kulla <Nyocurio@gmail.com>
  **
- ** mkxp is free software: you can redistribute it and/or modify
+ ** mke is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
  ** the Free Software Foundation, either version 2 of the License, or
  ** (at your option) any later version.
  **
- ** mkxp is distributed in the hope that it will be useful,
+ ** mke is distributed in the hope that it will be useful,
  ** but WITHOUT ANY WARRANTY; without even the implied warranty of
  ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  ** GNU General Public License for more details.
  **
  ** You should have received a copy of the GNU General Public License
- ** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+ ** along with mke.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "eventthread.h"
@@ -36,7 +36,7 @@
 #include "sharedstate.h"
 #include "graphics.h"
 
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
 #include "settingsmenu.h"
 #include "gamecontrollerdb.txt.xxd"
 #else
@@ -166,8 +166,8 @@ void EventThread::process(RGSSThreadData &rtData)
     
     bool terminate = false;
     
-#ifdef MKXPZ_BUILD_XCODE
-    SDL_GameControllerAddMappingsFromFile(mkxp_fs::getPathForAsset("gamecontrollerdb", "txt").c_str());
+#ifdef MKE_BUILD_XCODE
+    SDL_GameControllerAddMappingsFromFile(mke_fs::getPathForAsset("gamecontrollerdb", "txt").c_str());
 #else
     SDL_GameControllerAddMappingsFromRW(
         SDL_RWFromConstMem(___assets_gamecontrollerdb_txt, ___assets_gamecontrollerdb_txt_len),
@@ -198,7 +198,7 @@ void EventThread::process(RGSSThreadData &rtData)
     SDL_StopTextInput();
     
     textInputBuffer.clear();
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
     SettingsMenu *sMenu = 0;
 #else
     // Will always be 0
@@ -212,7 +212,7 @@ void EventThread::process(RGSSThreadData &rtData)
             Debug() << "EventThread: Event error";
             break;
         }
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
         if (sMenu && sMenu->onEvent(event))
         {
             if (sMenu->destroyReq())
@@ -328,7 +328,7 @@ void EventThread::process(RGSSThreadData &rtData)
                 
                 if (event.key.keysym.scancode == SDL_SCANCODE_F1 && rtData.config.enableSettings)
                 {
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
                     if (!sMenu)
                     {
                         sMenu = new SettingsMenu(rtData);
@@ -533,7 +533,7 @@ void EventThread::process(RGSSThreadData &rtData)
                         break;
                         
                     case REQUEST_SETTINGS :
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
                         if (!sMenu)
                         {
                             sMenu = new SettingsMenu(rtData);
@@ -590,7 +590,7 @@ void EventThread::process(RGSSThreadData &rtData)
     if (SDL_GameControllerGetAttached(ctrl))
         SDL_GameControllerClose(ctrl);
     
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
     delete sMenu;
 #endif
 }
@@ -766,7 +766,7 @@ void EventThread::showMessageBox(const char *body, int flags)
 {
     msgBoxDone.clear();
     
-    // mkxp has already been asked to quit.
+    // mke has already been asked to quit.
     // Don't break things if the window wants to close
     if (shState->rtData().rqTerm)
         return;
@@ -805,7 +805,7 @@ SDL_GameController *EventThread::controller() const
 
 void EventThread::notifyFrame()
 {
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
     uint32_t frames = round(shState->graphics().averageFrameRate());
     updateTouchBarFPSDisplay(frames);
 #endif
@@ -813,7 +813,7 @@ void EventThread::notifyFrame()
         return;
     
     SDL_Event event;
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
     event.user.code = frames;
 #else
     event.user.code = round(shState->graphics().averageFrameRate());

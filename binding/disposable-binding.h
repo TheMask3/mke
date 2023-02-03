@@ -1,22 +1,22 @@
 /*
 ** disposable-binding.h
 **
-** This file is part of mkxp.
+** This file is part of mke.
 **
 ** Copyright (C) 2013 Jonas Kulla <Nyocurio@gmail.com>
 **
-** mkxp is free software: you can redistribute it and/or modify
+** mke is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
 ** the Free Software Foundation, either version 2 of the License, or
 ** (at your option) any later version.
 **
-** mkxp is distributed in the hope that it will be useful,
+** mke is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ** GNU General Public License for more details.
 **
 ** You should have received a copy of the GNU General Public License
-** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+** along with mke.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef DISPOSABLEBINDING_H
@@ -83,7 +83,7 @@ disposableDisposeChildren(VALUE disp)
 	if (NIL_P(children))
 		return;
 
-	ID dispFun = rb_intern("_mkxp_dispose_alias");
+	ID dispFun = rb_intern("_mke_dispose_alias");
 
 	for (long i = 0; i < RARRAY_LEN(children); ++i)
 		rb_funcall2(rb_ary_entry(children, i), dispFun, 0, 0);
@@ -135,7 +135,7 @@ static void disposableBindingInit(VALUE klass)
 	/* Make sure we always have access to the original method, even
 	 * if it is overridden by user scripts */
 	if (rgssVer == 1)
-		rb_define_alias(klass, "_mkxp_dispose_alias", "dispose");
+		rb_define_alias(klass, "_mke_dispose_alias", "dispose");
 }
 
 template<class C>

@@ -1,6 +1,6 @@
 //
 //  http-binding.cpp
-//  mkxp-z
+//  mke
 //
 //  Created by ゾロアーク on 12/29/20.
 //
@@ -16,7 +16,7 @@
 
 #include "net/net.h"
 
-VALUE stringMap2hash(mkxp_net::StringMap &map) {
+VALUE stringMap2hash(mke_net::StringMap &map) {
     VALUE ret = rb_hash_new();
     for (auto const &item : map) {
         VALUE key = rb_utf8_str_new_cstr(item.first.c_str());
@@ -26,8 +26,8 @@ VALUE stringMap2hash(mkxp_net::StringMap &map) {
     return ret;
 }
 
-mkxp_net::StringMap hash2StringMap(VALUE hash) {
-    mkxp_net::StringMap ret;
+mke_net::StringMap hash2StringMap(VALUE hash) {
+    mke_net::StringMap ret;
     Check_Type(hash, T_HASH);
     
     VALUE keys = rb_funcall(hash, rb_intern("keys"), 0);
@@ -46,7 +46,7 @@ bool strContainsStr(std::string &first, std::string second) {
     return first.find(second) != std::string::npos;
 }
 
-VALUE getResponseBody(mkxp_net::HTTPResponse &res) {
+VALUE getResponseBody(mke_net::HTTPResponse &res) {
 #if RAPI_FULL >= 190
     auto it = res.headers().find("Content-Type");
     if (it == res.headers().end())
@@ -65,7 +65,7 @@ VALUE getResponseBody(mkxp_net::HTTPResponse &res) {
     return rb_str_new(res.body().c_str(), res.body().length());
 }
 
-VALUE formResponse(mkxp_net::HTTPResponse &res) {
+VALUE formResponse(mke_net::HTTPResponse &res) {
     VALUE ret = rb_hash_new();
     
     rb_hash_aset(ret, ID2SYM(rb_intern("status")), INT2NUM(res.status()));
@@ -79,7 +79,7 @@ void* httpGetInternal(void *req) {
     VALUE ret;
     
     GUARD_EXC(
-              mkxp_net::HTTPResponse res = ((mkxp_net::HTTPRequest*)req)->get();
+              mke_net::HTTPResponse res = ((mke_net::HTTPRequest*)req)->get();
               ret = formResponse(res);
               );
     
@@ -96,7 +96,7 @@ RB_METHOD(httpGet) {
     
     bool rd;
     rb_bool_arg(redirect, &rd);
-    mkxp_net::HTTPRequest req(RSTRING_PTR(path), rd);
+    mke_net::HTTPRequest req(RSTRING_PTR(path), rd);
     if (rheaders != Qnil) {
         auto headers = hash2StringMap(rheaders);
         req.headers().insert(headers.begin(), headers.end());
@@ -111,18 +111,18 @@ RB_METHOD(httpGet) {
 #if RAPI_MAJOR >= 2
 
 typedef struct {
-    mkxp_net::HTTPRequest *req;
-    mkxp_net::StringMap *postData;
+    mke_net::HTTPRequest *req;
+    mke_net::StringMap *postData;
 } httpPostInternalArgs;
 
 void* httpPostInternal(void *args) {
     VALUE ret;
     
-    mkxp_net::HTTPRequest *req = ((httpPostInternalArgs*)args)->req;
-    mkxp_net::StringMap *postData = ((httpPostInternalArgs*)args)->postData;
+    mke_net::HTTPRequest *req = ((httpPostInternalArgs*)args)->req;
+    mke_net::StringMap *postData = ((httpPostInternalArgs*)args)->postData;
     
     GUARD_EXC(
-              mkxp_net::HTTPResponse res = req->post(*postData);
+              mke_net::HTTPResponse res = req->post(*postData);
               ret = formResponse(res);
               );
     
@@ -139,13 +139,13 @@ RB_METHOD(httpPost) {
     
     bool rd;
     rb_bool_arg(redirect, &rd);
-    mkxp_net::HTTPRequest req(RSTRING_PTR(path), rd);
+    mke_net::HTTPRequest req(RSTRING_PTR(path), rd);
     if (rheaders != Qnil) {
         auto headers = hash2StringMap(rheaders);
         req.headers().insert(headers.begin(), headers.end());
     }
     
-    mkxp_net::StringMap postData = hash2StringMap(postDataHash);
+    mke_net::StringMap postData = hash2StringMap(postDataHash);
     httpPostInternalArgs args {&req, &postData};
 #if RAPI_MAJOR >= 2
     return (VALUE)rb_thread_call_without_gvl(httpPostInternal, &args, 0, 0);
@@ -156,7 +156,7 @@ RB_METHOD(httpPost) {
 
 #if RAPI_MAJOR >= 2
 typedef struct {
-    mkxp_net::HTTPRequest *req;
+    mke_net::HTTPRequest *req;
     const char *body;
     const char *ctype;
 } httpPostBodyInternalArgs;
@@ -164,12 +164,12 @@ typedef struct {
 void* httpPostBodyInternal(void *args) {
     VALUE ret;
     
-    mkxp_net::HTTPRequest *req = ((httpPostBodyInternalArgs*)args)->req;
+    mke_net::HTTPRequest *req = ((httpPostBodyInternalArgs*)args)->req;
     const char *reqbody = ((httpPostBodyInternalArgs*)args)->body;
     const char *reqctype = ((httpPostBodyInternalArgs*)args)->ctype;
     
     GUARD_EXC(
-              mkxp_net::HTTPResponse res = req->post(reqbody, reqctype);
+              mke_net::HTTPResponse res = req->post(reqbody, reqctype);
               ret = formResponse(res);
               );
     
@@ -187,7 +187,7 @@ RB_METHOD(httpPostBody) {
     SafeStringValue(ctype);
     
     
-    mkxp_net::HTTPRequest req(RSTRING_PTR(path));
+    mke_net::HTTPRequest req(RSTRING_PTR(path));
     if (rheaders != Qnil) {
         auto headers = hash2StringMap(rheaders);
         req.headers().insert(headers.begin(), headers.end());
@@ -280,7 +280,7 @@ json5pp::value rb2json(VALUE v) {
         return ret_value;
     }
     
-    raiseRbExc(Exception(Exception::MKXPError, "Invalid value for JSON: %s", RSTRING_PTR(rb_inspect(v))));
+    raiseRbExc(Exception(Exception::MKEError, "Invalid value for JSON: %s", RSTRING_PTR(rb_inspect(v))));
     
     // This should be unreachable
     return json5pp::value(0);
@@ -298,7 +298,7 @@ RB_METHOD(httpJsonParse) {
         v = json5pp::parse5(RSTRING_PTR(jsonv));
     }
     catch (const std::exception &e) {
-        raiseRbExc(Exception(Exception::MKXPError, "Failed to parse JSON: %s", e.what()));
+        raiseRbExc(Exception(Exception::MKEError, "Failed to parse JSON: %s", e.what()));
     }
     
     return json2rb(v);

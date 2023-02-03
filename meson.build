@@ -1,4 +1,4 @@
-project('mkxp-z', 'c', 'cpp', version: '2.4', meson_version: '>=0.56.0', default_options: ['cpp_std=c++14', 'buildtype=release'])
+project('mke', 'c', 'cpp', version: '2.4', meson_version: '>=0.56.0', default_options: ['cpp_std=c++14', 'buildtype=release'])
 
 host_system = host_machine.system()
 
@@ -21,8 +21,8 @@ sizeof = {'void*': compilers['cpp'].sizeof('void*'),
          }
 win64 = (sizeof['void*'] != sizeof['long'])
 
-global_args += '-DMKXPZ_BUILD_MESON'
-global_args += '-DMKXPZ_VERSION="@0@"'.format(meson.project_version())
+global_args += '-DMKE_BUILD_MESON'
+global_args += '-DMKE_VERSION="@0@"'.format(meson.project_version())
 global_args += '-DHAVE_NANOSLEEP'
 # ====================
 # Ext libs
@@ -54,7 +54,7 @@ if steamworks_path != ''
 
     if steamlib.found() == true
         global_include_dirs += include_directories('steamshim')
-        global_args += '-DMKXPZ_STEAM'
+        global_args += '-DMKE_STEAM'
         global_sources += 'steamshim/steamshim_child.c'
         steamworks = true
     endif
@@ -89,7 +89,7 @@ endif
 miniffi = get_option('use_miniffi')
 if miniffi == true
     miniffi = true
-    global_args += '-DMKXPZ_MINIFFI'
+    global_args += '-DMKE_MINIFFI'
 endif
 
 # Defines
@@ -98,7 +98,7 @@ if get_option('workdir_current')
 endif
 
 if get_option('cxx11_experimental') == true
-    global_args += '-DMKXPZ_EXP_FS'
+    global_args += '-DMKE_EXP_FS'
 endif
 
 if get_option('force32') == true
@@ -110,7 +110,7 @@ if get_option('static_executable') == true
     build_static = true
 endif
 
-global_args += '-DMKXPZ_INIT_GL_LATER'
+global_args += '-DMKE_INIT_GL_LATER'
 
 subdir('src')
 subdir('binding')

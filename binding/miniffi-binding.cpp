@@ -52,7 +52,7 @@ RB_METHOD(MiniFFI_initialize) {
     SafeStringValue(libname);
     SafeStringValue(func);
 #ifdef __APPLE__
-    void *hlib = SDL_LoadObject(mkxp_fs::normalizePath(RSTRING_PTR(libname), 1, 1).c_str());
+    void *hlib = SDL_LoadObject(mke_fs::normalizePath(RSTRING_PTR(libname), 1, 1).c_str());
 #else
     void *hlib = SDL_LoadObject(RSTRING_PTR(libname));
 #endif

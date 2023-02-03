@@ -17,7 +17,7 @@
                BlueprintIdentifier = "3B1C235525A199370075EF5D"
                BuildableName = "shim"
                BlueprintName = "shim"
-               ReferencedContainer = "container:mkxp-z.xcodeproj">
+               ReferencedContainer = "container:mke.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "3B1C235525A199370075EF5D"
             BuildableName = "shim"
             BlueprintName = "shim"
-            ReferencedContainer = "container:mkxp-z.xcodeproj">
+            ReferencedContainer = "container:mke.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "3B1C235525A199370075EF5D"
             BuildableName = "shim"
             BlueprintName = "shim"
-            ReferencedContainer = "container:mkxp-z.xcodeproj">
+            ReferencedContainer = "container:mke.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

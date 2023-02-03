@@ -1,6 +1,6 @@
 //
 //  net.h
-//  mkxp-z
+//  mke
 //
 //  Created by ゾロアーク on 12/29/20.
 //
@@ -11,7 +11,7 @@
 #include <unordered_map>
 #include <string>
 
-namespace mkxp_net {
+namespace mke_net {
 
 typedef std::unordered_map<std::string, std::string> StringMap;
 

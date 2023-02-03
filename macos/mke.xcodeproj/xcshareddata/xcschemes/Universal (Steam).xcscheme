@@ -17,7 +17,7 @@
                BlueprintIdentifier = "3BBE87802705A73400A574AE"
                BuildableName = "Z-steam.app"
                BlueprintName = "Z-steam-universal"
-               ReferencedContainer = "container:mkxp-z.xcodeproj">
+               ReferencedContainer = "container:mke.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,12 +47,12 @@
             BlueprintIdentifier = "3BBE87802705A73400A574AE"
             BuildableName = "Z-steam.app"
             BlueprintName = "Z-steam-universal"
-            ReferencedContainer = "container:mkxp-z.xcodeproj">
+            ReferencedContainer = "container:mke.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "MKXPZ_FOLDER_SELECT"
+            key = "MKE_FOLDER_SELECT"
             value = "1"
             isEnabled = "YES">
          </EnvironmentVariable>
@@ -71,7 +71,7 @@
             BlueprintIdentifier = "3BBE87802705A73400A574AE"
             BuildableName = "Z-steam.app"
             BlueprintName = "Z-steam-universal"
-            ReferencedContainer = "container:mkxp-z.xcodeproj">
+            ReferencedContainer = "container:mke.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

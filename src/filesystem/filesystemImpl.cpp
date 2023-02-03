@@ -11,7 +11,7 @@
 #include "util/exception.h"
 #include "util/debugwriter.h"
 
-#ifdef MKXPZ_EXP_FS
+#ifdef MKE_EXP_FS
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
 #else
@@ -62,7 +62,7 @@ std::string filesystemImpl::getCurrentDirectory() {
     try {
         ret = std::string(fs::current_path().string());
     } catch (...) {
-        throw Exception(Exception::MKXPError, "Failed to retrieve current path");
+        throw Exception(Exception::MKEError, "Failed to retrieve current path");
     }
     return ret;
 }

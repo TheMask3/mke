@@ -1,22 +1,22 @@
 /*
 ** font.cpp
 **
-** This file is part of mkxp.
+** This file is part of mke.
 **
 ** Copyright (C) 2013 Jonas Kulla <Nyocurio@gmail.com>
 **
-** mkxp is free software: you can redistribute it and/or modify
+** mke is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
 ** the Free Software Foundation, either version 2 of the License, or
 ** (at your option) any later version.
 **
-** mkxp is distributed in the hope that it will be useful,
+** mke is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ** GNU General Public License for more details.
 **
 ** You should have received a copy of the GNU General Public License
-** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+** along with mke.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "font.h"
@@ -31,21 +31,21 @@
 #include <string>
 #include <utility>
 
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
 #include "filesystem/filesystem.h"
 #endif
 
 #include <SDL_ttf.h>
 
-#ifndef MKXPZ_BUILD_XCODE
-#ifndef MKXPZ_CJK_FONT
+#ifndef MKE_BUILD_XCODE
+#ifndef MKE_CJK_FONT
 #include "liberation.ttf.xxd"
 #else
 #include "wqymicrohei.ttf.xxd"
 #endif
 
 
-#ifndef MKXPZ_CJK_FONT
+#ifndef MKE_CJK_FONT
 #define BUNDLED_FONT liberation
 #else
 #define BUNDLED_FONT wqymicrohei
@@ -68,10 +68,10 @@ BUNDLED_FONT_DECL(liberation)
 
 static SDL_RWops *openBundledFont()
 {
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
     return SDL_RWFromConstMem(BNDL_F_D(BUNDLED_FONT), BNDL_F_L(BUNDLED_FONT));
 #else
-    return SDL_RWFromFile(mkxp_fs::getPathForAsset("Fonts/liberation", "ttf").c_str(), "rb");
+    return SDL_RWFromFile(mke_fs::getPathForAsset("Fonts/liberation", "ttf").c_str(), "rb");
 #endif
 }
 
@@ -244,7 +244,7 @@ void pickExistingFontName(const std::vector<std::string> &names,
 {
 	/* Note: In RMXP, a names array with no existing entry
 	 * results in no text being drawn at all (same for "" and []);
-	 * we can't replicate this in mkxp due to the default substitute. */
+	 * we can't replicate this in mke due to the default substitute. */
 
 	for (size_t i = 0; i < names.size(); ++i)
 	{

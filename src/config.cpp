@@ -100,12 +100,12 @@ bool getEnvironmentBool(const char *env, bool defaultValue) {
 json::value readConfFile(const char *path) {
     
     json::value ret(0);
-    if (!mkxp_fs::fileExists(path)) {
+    if (!mke_fs::fileExists(path)) {
         return json::object({});
     }
     
     try {
-        std::string cfg = mkxp_fs::contentsOfFileAsString(path);
+        std::string cfg = mke_fs::contentsOfFileAsString(path);
         ret = json::parse5(Encoding::convertString(cfg));
     }
     catch (const std::exception &e) {
@@ -121,7 +121,7 @@ json::value readConfFile(const char *path) {
     return ret;
 }
 
-#define CONF_FILE "mkxp.json"
+#define CONF_FILE "mke.json"
 
 Config::Config() {}
 
@@ -236,13 +236,13 @@ try { exp } catch (...) {}
     SET_OPT(defScreenH, integer);
     
     // Take a break real quick and witch to set game folder and read the game's ini
-    if (!gameFolder.empty() && !mkxp_fs::setCurrentDirectory(gameFolder.c_str())) {
-        throw Exception(Exception::MKXPError, "Unable to switch into gameFolder %s", gameFolder.c_str());
+    if (!gameFolder.empty() && !mke_fs::setCurrentDirectory(gameFolder.c_str())) {
+        throw Exception(Exception::MKEError, "Unable to switch into gameFolder %s", gameFolder.c_str());
     }
     
     readGameINI();
     
-    // Now check for an extra mkxp.conf in the user's save directory and merge anything else from that
+    // Now check for an extra mke.conf in the user's save directory and merge anything else from that
     userConfPath = customDataPath + "/" CONF_FILE;
     json::value userConf = readConfFile(userConfPath.c_str());
     copyObject(optsJ, userConf);
@@ -300,19 +300,19 @@ try { exp } catch (...) {}
     SE.sourceCount = clamp(SE.sourceCount, 1, 64);
     
     // Determine whether to open a console window on... Windows
-    winConsole = getEnvironmentBool("MKXPZ_WINDOWS_CONSOLE", editor.debug);
+    winConsole = getEnvironmentBool("MKE_WINDOWS_CONSOLE", editor.debug);
     
 #ifdef __APPLE__
     // Determine whether to use the Metal renderer on macOS
     // Environment variable takes priority over the json setting
-    preferMetalRenderer = isMetalSupported() && getEnvironmentBool("MKXPZ_MACOS_METAL", preferMetalRenderer);
+    preferMetalRenderer = isMetalSupported() && getEnvironmentBool("MKE_MACOS_METAL", preferMetalRenderer);
 #endif
     
     // Determine whether to allow manual selection of a game folder on startup
     // Only works on macOS atm, mainly used to test games located outside of the bundle.
     // The config is re-read after the window is already created, so some entries
     // may not take effect
-    manualFolderSelect = getEnvironmentBool("MKXPZ_FOLDER_SELECT", false);
+    manualFolderSelect = getEnvironmentBool("MKE_FOLDER_SELECT", false);
     
     raw = optsJ;
 }
@@ -372,7 +372,7 @@ void Config::readGameINI() {
     }
     
     if (game.title.empty() || !convSuccess)
-        game.title = "mkxp-z";
+        game.title = "mke";
     
     if (dataPathOrg.empty())
         dataPathOrg = ".";

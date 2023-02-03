@@ -1,22 +1,22 @@
 /*
 ** shader.cpp
 **
-** This file is part of mkxp.
+** This file is part of mke.
 **
 ** Copyright (C) 2013 Jonas Kulla <Nyocurio@gmail.com>
 **
-** mkxp is free software: you can redistribute it and/or modify
+** mke is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
 ** the Free Software Foundation, either version 2 of the License, or
 ** (at your option) any later version.
 **
-** mkxp is distributed in the hope that it will be useful,
+** mke is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ** GNU General Public License for more details.
 **
 ** You should have received a copy of the GNU General Public License
-** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+** along with mke.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "shader.h"
@@ -28,7 +28,7 @@
 #include <string.h>
 #include <iostream>
 
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
 #include "common.h.xxd"
 #include "sprite.frag.xxd"
 #include "hue.frag.xxd"
@@ -56,12 +56,12 @@
 #include "tilemapvx.vert.xxd"
 #endif
 
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
 #include "filesystem/filesystem.h"
 #define INIT_SHADER(vert, frag, name) \
 { \
-    std::string v = mkxp_fs::contentsOfAssetAsString("Shaders/" #vert, "vert"); \
-    std::string f = mkxp_fs::contentsOfAssetAsString("Shaders/" #frag, "frag"); \
+    std::string v = mke_fs::contentsOfAssetAsString("Shaders/" #vert, "vert"); \
+    std::string f = mke_fs::contentsOfAssetAsString("Shaders/" #frag, "frag"); \
     Shader::init((const unsigned char*)v.c_str(), v.length(), (const unsigned char*)f.c_str(), f.length(), #vert, #frag, #name); \
 }
 #else
@@ -74,7 +74,7 @@
 
 #define GET_U(name) u_##name = gl.GetUniformLocation(program, #name)
 
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
     std::string Shader::shaderCommon = "";
 #endif
 
@@ -102,9 +102,9 @@ static void printProgramLog(GLuint program)
 
 Shader::Shader()
 {
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
     if (Shader::shaderCommon.empty())
-        Shader::shaderCommon = mkxp_fs::contentsOfAssetAsString("Shaders/common", "h");
+        Shader::shaderCommon = mke_fs::contentsOfAssetAsString("Shaders/common", "h");
 #endif
 	vertShader = gl.CreateShader(GL_VERTEX_SHADER);
 	fragShader = gl.CreateShader(GL_FRAGMENT_SHADER);
@@ -131,7 +131,7 @@ void Shader::unbind()
 	glState.program.set(0);
 }
 
-#ifdef MKXPZ_BUILD_XCODE
+#ifdef MKE_BUILD_XCODE
 std::string &Shader::commonHeader() {
     return Shader::shaderCommon;
 }
@@ -161,7 +161,7 @@ static void setupShaderSource(GLuint shader, GLenum type,
 		++i;
 	}
 
-#ifndef MKXPZ_BUILD_XCODE
+#ifndef MKE_BUILD_XCODE
 	shaderSrc[i] = (const GLchar*) ___shader_common_h;
 	shaderSrcSize[i] = ___shader_common_h_len;
 #else
@@ -193,7 +193,7 @@ void Shader::init(const unsigned char *vert, int vertSize,
 	if (!success)
 	{
 		printShaderLog(vertShader);
-		throw Exception(Exception::MKXPError,
+		throw Exception(Exception::MKEError,
 	                    "GLSL: An error occured while compiling vertex shader '%s' in program '%s'",
 	                    vertName, programName);
 	}
@@ -207,7 +207,7 @@ void Shader::init(const unsigned char *vert, int vertSize,
 	if (!success)
 	{
 		printShaderLog(fragShader);
-		throw Exception(Exception::MKXPError,
+		throw Exception(Exception::MKEError,
 	                    "GLSL: An error occured while compiling fragment shader '%s' in program '%s'",
 	                    fragName, programName);
 	}
@@ -227,7 +227,7 @@ void Shader::init(const unsigned char *vert, int vertSize,
 	if (!success)
 	{
 		printProgramLog(program);
-		throw Exception(Exception::MKXPError,
+		throw Exception(Exception::MKEError,
 	                    "GLSL: An error occured while linking program '%s' (vertex '%s', fragment '%s')",
 	                    programName, vertName, fragName);
 	}

@@ -1,22 +1,22 @@
 /*
 ** midisource.cpp
 **
-** This file is part of mkxp.
+** This file is part of mke.
 **
 ** Copyright (C) 2014 Jonas Kulla <Nyocurio@gmail.com>
 **
-** mkxp is free software: you can redistribute it and/or modify
+** mke is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
 ** the Free Software Foundation, either version 2 of the License, or
 ** (at your option) any later version.
 **
-** mkxp is distributed in the hope that it will be useful,
+** mke is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ** GNU General Public License for more details.
 **
 ** You should have received a copy of the GNU General Public License
-** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+** along with mke.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "aldatasource.h"
@@ -139,7 +139,7 @@ struct MidiReadHandler
 static void
 badMidiFormat()
 {
-	throw Exception(Exception::MKXPError, "Midi: Bad format");
+	throw Exception(Exception::MKEError, "Midi: Bad format");
 }
 
 /* File-like interface to a read-only memory buffer */
@@ -178,7 +178,7 @@ struct MemChunk
 
 	void endOfFile()
 	{
-		throw Exception(Exception::MKXPError, "Midi: EOF");
+		throw Exception(Exception::MKEError, "Midi: EOF");
 	}
 };
 
@@ -628,7 +628,7 @@ struct MidiSource : ALDataSource, MidiReadHandler
 		if (SDL_RWread(&ops, &data[0], 1, dataLen) < dataLen)
 		{
 			SDL_RWclose(&ops);
-			throw Exception(Exception::MKXPError, "Reading midi data failed");
+			throw Exception(Exception::MKEError, "Reading midi data failed");
 		}
 
 		try
@@ -758,13 +758,13 @@ struct MidiSource : ALDataSource, MidiReadHandler
 	void onMidiHeader(uint16_t midiType, uint16_t trackCount, uint16_t division)
 	{
 		if (midiType != 0 && midiType != 1)
-			throw Exception(Exception::MKXPError, "Midi: Type 2 not supported");
+			throw Exception(Exception::MKEError, "Midi: Type 2 not supported");
 
 		tracks.resize(trackCount);
 
 		// SMTP unhandled
 		if (division & 0x8000)
-			throw Exception(Exception::MKXPError, "Midi: SMTP parameters not supported");
+			throw Exception(Exception::MKEError, "Midi: SMTP parameters not supported");
 		else
 			dpb = division;
 	}

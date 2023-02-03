@@ -211,7 +211,7 @@
 		3B1C23E525A19C600075EF5D /* libphysfs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE080FF256879FE0006849F /* libphysfs.a */; };
 		3B1C23E725A19C600075EF5D /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3BDB23E22564546E00C4A63D /* icon.icns */; };
 		3B1C23E925A19C600075EF5D /* Assets.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BA08EA4256641ED00449CFF /* Assets.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3B1C23EB25A19C600075EF5D /* mkxp.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BD2B7282565B35D003DAD8A /* mkxp.json */; };
+		3B1C23EB25A19C600075EF5D /* mke.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BD2B7282565B35D003DAD8A /* mke.json */; };
 		3B1C23ED25A19C600075EF5D /* libfluidsynth.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B522DA1259BAA13003301C4 /* libfluidsynth.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3B1C23EE25A19C600075EF5D /* libruby.3.1.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1C230A25A144A10075EF5D /* libruby.3.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3B1C23FD25A19FB40075EF5D /* steamshim_mac_helpers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C23FC25A19FB40075EF5D /* steamshim_mac_helpers.mm */; };
@@ -244,8 +244,8 @@
 		3B522DDD259C1E53003301C4 /* http-binding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B522DDB259C1E53003301C4 /* http-binding.cpp */; };
 		3B522DE5259C2039003301C4 /* LUrlParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B522DE4259C2039003301C4 /* LUrlParser.cpp */; };
 		3B522DE6259C2039003301C4 /* LUrlParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B522DE4259C2039003301C4 /* LUrlParser.cpp */; };
-		3B522DED259C3E97003301C4 /* mkxp.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BD2B7282565B35D003DAD8A /* mkxp.json */; };
-		3B522DEF259C3E9D003301C4 /* mkxp.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BD2B7282565B35D003DAD8A /* mkxp.json */; };
+		3B522DED259C3E97003301C4 /* mke.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BD2B7282565B35D003DAD8A /* mke.json */; };
+		3B522DEF259C3E9D003301C4 /* mke.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BD2B7282565B35D003DAD8A /* mke.json */; };
 		3B5A84062569B56F00BAF2E5 /* config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B5A84052569B56F00BAF2E5 /* config.cpp */; };
 		3B5A840D2569BE7C00BAF2E5 /* filesystemImplApple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B5A840C2569BE7C00BAF2E5 /* filesystemImplApple.mm */; };
 		3B5A8445256A0F6300BAF2E5 /* libopenal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5A8444256A0F6300BAF2E5 /* libopenal.a */; };
@@ -366,7 +366,7 @@
 		3BBE87F82705A73400A574AE /* shim in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B1C235625A199370075EF5D /* shim */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3BBE87FA2705A73400A574AE /* Assets.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BA08EA4256641ED00449CFF /* Assets.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BBE87FB2705A73400A574AE /* steam_appid.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B1C243E25A1B8D20075EF5D /* steam_appid.txt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		3BBE87FD2705A73400A574AE /* mkxp.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BD2B7282565B35D003DAD8A /* mkxp.json */; };
+		3BBE87FD2705A73400A574AE /* mke.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BD2B7282565B35D003DAD8A /* mke.json */; };
 		3BBE87FF2705A73400A574AE /* 3.1.0 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B251DA526DA2CFA00E5D09B /* 3.1.0 */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3BBE88012705A73400A574AE /* libfluidsynth.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B522DA1259BAA13003301C4 /* libfluidsynth.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3BBE88022705A73400A574AE /* libEGL.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5E1F0925A881FB0086FFDC /* libEGL.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -526,7 +526,7 @@
 			containerPortal = 3BDB22EC25644FBF00C4A63D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3BA08EA3256641ED00449CFF;
-			remoteInfo = "mkxpz-resources";
+			remoteInfo = "mke-resources";
 		};
 		3B1C243225A1B1290075EF5D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -540,7 +540,7 @@
 			containerPortal = 3BDB22EC25644FBF00C4A63D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3BA08EA3256641ED00449CFF;
-			remoteInfo = "mkxpz-resources";
+			remoteInfo = "mke-resources";
 		};
 		3BBE87822705A73400A574AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -554,14 +554,14 @@
 			containerPortal = 3BDB22EC25644FBF00C4A63D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3BA08EA3256641ED00449CFF;
-			remoteInfo = "mkxpz-resources";
+			remoteInfo = "mke-resources";
 		};
 		3BC65D8C2584F3AD0063AFF1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3BDB22EC25644FBF00C4A63D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3BA08EA3256641ED00449CFF;
-			remoteInfo = "mkxpz-resources";
+			remoteInfo = "mke-resources";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -612,7 +612,7 @@
 			dstPath = Contents/Game;
 			dstSubfolderSpec = 1;
 			files = (
-				3B1C23EB25A19C600075EF5D /* mkxp.json in CopyFiles */,
+				3B1C23EB25A19C600075EF5D /* mke.json in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,7 +705,7 @@
 			dstPath = Contents/Game;
 			dstSubfolderSpec = 1;
 			files = (
-				3B522DEF259C3E9D003301C4 /* mkxp.json in CopyFiles */,
+				3B522DEF259C3E9D003301C4 /* mke.json in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,7 +780,7 @@
 			dstPath = Contents/Game;
 			dstSubfolderSpec = 1;
 			files = (
-				3BBE87FD2705A73400A574AE /* mkxp.json in CopyFiles */,
+				3BBE87FD2705A73400A574AE /* mke.json in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,7 +814,7 @@
 			dstPath = Contents/Game;
 			dstSubfolderSpec = 1;
 			files = (
-				3B522DED259C3E97003301C4 /* mkxp.json in CopyFiles */,
+				3B522DED259C3E97003301C4 /* mke.json in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,9 +985,9 @@
 		3B1BC0EB266F924B00794D22 /* libuchardet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuchardet.a; path = "Dependencies/build-macosx-x86_64/lib/libuchardet.a"; sourceTree = "<group>"; };
 		3B1C230A25A144A10075EF5D /* libruby.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libruby.3.1.dylib; path = "Dependencies/build-macosx-x86_64/lib/libruby.3.1.dylib"; sourceTree = "<group>"; };
 		3B1C230D25A144BF0075EF5D /* libruby.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libruby.3.1.dylib; path = "Dependencies/build-macosx-universal/lib/libruby.3.1.dylib"; sourceTree = "<group>"; };
-		3B1C231E25A15FB20075EF5D /* mkxp.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = mkxp.xcconfig; path = config/mkxp.xcconfig; sourceTree = "<group>"; };
-		3B1C231F25A15FB20075EF5D /* mkxp.Intel.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = mkxp.Intel.xcconfig; path = config/mkxp.Intel.xcconfig; sourceTree = "<group>"; };
-		3B1C232025A15FB20075EF5D /* mkxp.Universal.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = mkxp.Universal.xcconfig; path = config/mkxp.Universal.xcconfig; sourceTree = "<group>"; };
+		3B1C231E25A15FB20075EF5D /* mke.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = mke.xcconfig; path = config/mke.xcconfig; sourceTree = "<group>"; };
+		3B1C231F25A15FB20075EF5D /* mke.Intel.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = mke.Intel.xcconfig; path = config/mke.Intel.xcconfig; sourceTree = "<group>"; };
+		3B1C232025A15FB20075EF5D /* mke.Universal.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = mke.Universal.xcconfig; path = config/mke.Universal.xcconfig; sourceTree = "<group>"; };
 		3B1C235625A199370075EF5D /* shim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = shim; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1C236725A19B960075EF5D /* steamshim_parent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = steamshim_parent.cpp; path = ../steamshim/steamshim_parent.cpp; sourceTree = "<group>"; };
 		3B1C236825A19B960075EF5D /* steamshim_child.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = steamshim_child.h; path = ../steamshim/steamshim_child.h; sourceTree = "<group>"; };
@@ -1057,7 +1057,7 @@
 		3BC65D882584F3780063AFF1 /* libpixman-1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpixman-1.a"; path = "Dependencies/build-macosx-universal/lib/libpixman-1.a"; sourceTree = "<group>"; };
 		3BC65D892584F3910063AFF1 /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = "Dependencies/build-macosx-universal/lib/libSDL2main.a"; sourceTree = "<group>"; };
 		3BC65E152584F3AD0063AFF1 /* Z-universal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Z-universal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3BD2B3AF25651885003DAD8A /* mkxp.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = mkxp.entitlements; sourceTree = "<group>"; };
+		3BD2B3AF25651885003DAD8A /* mke.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = mke.entitlements; sourceTree = "<group>"; };
 		3BD2B46525651BF3003DAD8A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		3BD2B46625651BFC003DAD8A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		3BD2B46725651C00003DAD8A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1066,7 +1066,7 @@
 		3BD2B47A256534BA003DAD8A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		3BD2B7252565AEC0003DAD8A /* Z-intel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Z-intel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD2B7272565B343003DAD8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		3BD2B7282565B35D003DAD8A /* mkxp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = mkxp.json; path = ../mkxp.json; sourceTree = "<group>"; };
+		3BD2B7282565B35D003DAD8A /* mke.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = mke.json; path = ../mke.json; sourceTree = "<group>"; };
 		3BDB23E22564546E00C4A63D /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		3BDB25C52565184600C4A63D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BE080E4256879FC0006849F /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = "Dependencies/build-macosx-x86_64/lib/libSDL2main.a"; sourceTree = "<group>"; };
@@ -1581,14 +1581,14 @@
 			name = Makefiles;
 			sourceTree = "<group>";
 		};
-		3B1C231D25A15F8F0075EF5D /* mkxp */ = {
+		3B1C231D25A15F8F0075EF5D /* mke */ = {
 			isa = PBXGroup;
 			children = (
-				3B1C231F25A15FB20075EF5D /* mkxp.Intel.xcconfig */,
-				3B1C232025A15FB20075EF5D /* mkxp.Universal.xcconfig */,
-				3B1C231E25A15FB20075EF5D /* mkxp.xcconfig */,
+				3B1C231F25A15FB20075EF5D /* mke.Intel.xcconfig */,
+				3B1C232025A15FB20075EF5D /* mke.Universal.xcconfig */,
+				3B1C231E25A15FB20075EF5D /* mke.xcconfig */,
 			);
-			name = mkxp;
+			name = mke;
 			sourceTree = "<group>";
 		};
 		3B1C236625A19B780075EF5D /* steamshim */ = {
@@ -1736,9 +1736,9 @@
 			isa = PBXGroup;
 			children = (
 				3B1C240B25A1A43B0075EF5D /* steam */,
-				3B1C231D25A15F8F0075EF5D /* mkxp */,
-				3BD2B7282565B35D003DAD8A /* mkxp.json */,
-				3BD2B3AF25651885003DAD8A /* mkxp.entitlements */,
+				3B1C231D25A15F8F0075EF5D /* mke */,
+				3BD2B7282565B35D003DAD8A /* mke.json */,
+				3BD2B3AF25651885003DAD8A /* mke.entitlements */,
 				3B58E90F26293A9D001F9031 /* shim.entitlements */,
 				3BDB25C52565184600C4A63D /* Info.plist */,
 			);
@@ -1924,7 +1924,7 @@
 			dependencies = (
 			);
 			name = Assets;
-			productName = "mkxpz-resources";
+			productName = "mke-resources";
 			productReference = 3BA08EA4256641ED00449CFF /* Assets.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
@@ -2012,7 +2012,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3BDB22EF25644FBF00C4A63D /* Build configuration list for PBXProject "mkxp-z" */;
+			buildConfigurationList = 3BDB22EF25644FBF00C4A63D /* Build configuration list for PBXProject "mke" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -2523,7 +2523,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Dependencies/Frameworks/steam/sdk/redistributable_bin/osx";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2589,7 +2589,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Dependencies/Frameworks/steam/sdk/redistributable_bin/osx";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2598,7 +2598,7 @@
 		};
 		3B1C23F025A19C600075EF5D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C231F25A15FB20075EF5D /* mkxp.Intel.xcconfig */;
+			baseConfigurationReference = 3B1C231F25A15FB20075EF5D /* mke.Intel.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = x86_64;
@@ -2643,7 +2643,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					MKXPZ_STEAM,
+					MKE_STEAM,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -2661,19 +2661,19 @@
 					"$(PROJECT_DIR)/Dependencies/build-macosx-x86_64/lib",
 				);
 				MARKETING_VERSION = 2.4.0;
-				MKXPZ_EXECUTABLE_NAME = shim;
+				MKE_EXECUTABLE_NAME = shim;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
 		3B1C23F125A19C600075EF5D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C231F25A15FB20075EF5D /* mkxp.Intel.xcconfig */;
+			baseConfigurationReference = 3B1C231F25A15FB20075EF5D /* mke.Intel.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = x86_64;
@@ -2716,7 +2716,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					MKXPZ_STEAM,
+					MKE_STEAM,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -2734,12 +2734,12 @@
 					"$(PROJECT_DIR)/Dependencies/build-macosx-x86_64/lib",
 				);
 				MARKETING_VERSION = 2.4.0;
-				MKXPZ_EXECUTABLE_NAME = shim;
+				MKE_EXECUTABLE_NAME = shim;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
@@ -2806,7 +2806,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.struma.mkxpz-resources";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.struma.mke-resources";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -2871,7 +2871,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.struma.mkxpz-resources";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.struma.mke-resources";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -2882,7 +2882,7 @@
 		};
 		3BBE88072705A73400A574AE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C232025A15FB20075EF5D /* mkxp.Universal.xcconfig */;
+			baseConfigurationReference = 3B1C232025A15FB20075EF5D /* mke.Universal.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2926,7 +2926,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					MKXPZ_STEAM,
+					MKE_STEAM,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -2958,12 +2958,12 @@
 					"$(PROJECT_DIR)/Dependencies/build-macosx-universal/lib",
 				);
 				MARKETING_VERSION = 2.4.0;
-				MKXPZ_EXECUTABLE_NAME = shim;
+				MKE_EXECUTABLE_NAME = shim;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PRODUCT_NAME = "Z-steam";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -2971,7 +2971,7 @@
 		};
 		3BBE88082705A73400A574AE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C232025A15FB20075EF5D /* mkxp.Universal.xcconfig */;
+			baseConfigurationReference = 3B1C232025A15FB20075EF5D /* mke.Universal.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3013,7 +3013,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					MKXPZ_STEAM,
+					MKE_STEAM,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -3045,12 +3045,12 @@
 					"$(PROJECT_DIR)/Dependencies/build-macosx-universal/lib",
 				);
 				MARKETING_VERSION = 2.4.0;
-				MKXPZ_EXECUTABLE_NAME = shim;
+				MKE_EXECUTABLE_NAME = shim;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PRODUCT_NAME = "Z-steam";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -3058,7 +3058,7 @@
 		};
 		3BC65E132584F3AD0063AFF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C232025A15FB20075EF5D /* mkxp.Universal.xcconfig */;
+			baseConfigurationReference = 3B1C232025A15FB20075EF5D /* mke.Universal.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3134,14 +3134,14 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
 		3BC65E142584F3AD0063AFF1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C232025A15FB20075EF5D /* mkxp.Universal.xcconfig */;
+			baseConfigurationReference = 3B1C232025A15FB20075EF5D /* mke.Universal.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3215,14 +3215,14 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
 		3BD2B7232565AEC0003DAD8A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C231F25A15FB20075EF5D /* mkxp.Intel.xcconfig */;
+			baseConfigurationReference = 3B1C231F25A15FB20075EF5D /* mke.Intel.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = x86_64;
@@ -3284,14 +3284,14 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
 		3BD2B7242565AEC0003DAD8A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C231F25A15FB20075EF5D /* mkxp.Intel.xcconfig */;
+			baseConfigurationReference = 3B1C231F25A15FB20075EF5D /* mke.Intel.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = x86_64;
@@ -3351,14 +3351,14 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.struma.mke";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
 		3BDB22F025644FBF00C4A63D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C231E25A15FB20075EF5D /* mkxp.xcconfig */;
+			baseConfigurationReference = 3B1C231E25A15FB20075EF5D /* mke.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -3383,15 +3383,15 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					MKXPZ_BUILD_XCODE,
-					"MKXPZ_ALCDEVICE=ALCdevice",
-					"MKXPZ_VERSION=\"\\\"$(MARKETING_VERSION)\\\"\"",
-					MKXPZ_MINIFFI,
-					MKXPZ_DEBUG,
-					MKXPZ_SSL,
+					MKE_BUILD_XCODE,
+					"MKE_ALCDEVICE=ALCdevice",
+					"MKE_VERSION=\"\\\"$(MARKETING_VERSION)\\\"\"",
+					MKE_MINIFFI,
+					MKE_DEBUG,
+					MKE_SSL,
 					AL_LIBTYPE_STATIC,
 					GLES2_HEADER,
-					"$(MKXPZ_EXTRA_ARGS)",
+					"$(MKE_EXTRA_ARGS)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3420,7 +3420,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-fdeclspec";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.zoro.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.zoro.mke";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wno-documentation";
@@ -3429,7 +3429,7 @@
 		};
 		3BDB22F125644FBF00C4A63D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1C231E25A15FB20075EF5D /* mkxp.xcconfig */;
+			baseConfigurationReference = 3B1C231E25A15FB20075EF5D /* mke.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -3454,14 +3454,14 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					MKXPZ_BUILD_XCODE,
-					"MKXPZ_ALCDEVICE=ALCdevice",
-					"MKXPZ_VERSION=\"\\\"$(MARKETING_VERSION)\\\"\"",
-					MKXPZ_MINIFFI,
-					MKXPZ_SSL,
+					MKE_BUILD_XCODE,
+					"MKE_ALCDEVICE=ALCdevice",
+					"MKE_VERSION=\"\\\"$(MARKETING_VERSION)\\\"\"",
+					MKE_MINIFFI,
+					MKE_SSL,
 					AL_LIBTYPE_STATIC,
 					GLES2_HEADER,
-					"$(MKXPZ_EXTRA_ARGS)",
+					"$(MKE_EXTRA_ARGS)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3490,7 +3490,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-fdeclspec";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.zoro.mkxp-z";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.zoro.mke";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wno-documentation";
@@ -3554,7 +3554,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3BDB22EF25644FBF00C4A63D /* Build configuration list for PBXProject "mkxp-z" */ = {
+		3BDB22EF25644FBF00C4A63D /* Build configuration list for PBXProject "mke" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3BDB22F025644FBF00C4A63D /* Debug */,

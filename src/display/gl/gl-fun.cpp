@@ -1,22 +1,22 @@
 /*
  ** gl-fun.cpp
  **
- ** This file is part of mkxp.
+ ** This file is part of mke.
  **
  ** Copyright (C) 2014 Jonas Kulla <Nyocurio@gmail.com>
  **
- ** mkxp is free software: you can redistribute it and/or modify
+ ** mke is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
  ** the Free Software Foundation, either version 2 of the License, or
  ** (at your option) any later version.
  **
- ** mkxp is distributed in the hope that it will be useful,
+ ** mke is distributed in the hope that it will be useful,
  ** but WITHOUT ANY WARRANTY; without even the implied warranty of
  ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  ** GNU General Public License for more details.
  **
  ** You should have received a copy of the GNU General Public License
- ** along with mkxp.  If not, see <http://www.gnu.org/licenses/>.
+ ** along with mke.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "gl-fun.h"
@@ -72,7 +72,7 @@ static void parseExtensionsCompat(_PFNGLGETSTRINGPROC GetString, BoostSet<std::s
 gl.name = (type) SDL_GL_GetProcAddress("gl" #name EXT_SUFFIX);
 
 #define EXC(msg) \
-Exception(Exception::MKXPError, "%s", msg)
+Exception(Exception::MKEError, "%s", msg)
 
 void initGLFunctions()
 {
@@ -100,7 +100,7 @@ void initGLFunctions()
     
     if (glMajor < 2)
 #ifndef GLES2_HEADER
-        throw Exception(Exception::MKXPError,
+        throw Exception(Exception::MKEError,
                   "A graphics card that supports OpenGL 2.0 or later is required.\n\n"
                   "Driver information:\n"
                   "Vendor: %s\n"

@@ -8,7 +8,7 @@
 
 #if __LINUX__ || __ANDROID__
 #define FLUID_LIB "libfluidsynth.so.3"
-#elif MKXPZ_BUILD_XCODE
+#elif MKE_BUILD_XCODE
 #define FLUID_LIB "@rpath/libfluidsynth.dylib"
 #elif __APPLE__
 #define FLUID_LIB "libfluidsynth.3.dylib"
