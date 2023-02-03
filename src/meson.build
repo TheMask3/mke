@@ -14,6 +14,8 @@ png = dependency('libpng', static: build_static)
 jpeg = dependency('libjpeg', static: build_static)
 zlib = dependency('zlib', static: build_static)
 uchardet = dependency('uchardet', static: build_static)
+# Add this later when we can replace theora with dav1d
+# dav1d = dependancy('dav1d', static: build_static)
 
 if host_system == 'windows'
     bz2 = dependency('bzip2', static: build_static)
@@ -148,6 +150,7 @@ main_source = files(
     'display/gl/tilequad.cpp',
     'display/gl/vertex.cpp',
 
+    'util/easylogging++.cpp',
     'util/iniconfig.cpp',
     'util/win-consoleutils.cpp',
     
@@ -163,7 +166,50 @@ main_source = files(
     'net/LUrlParser.cpp',
     'net/net.cpp',
 
-    'system/systemImpl.cpp'
+    'system/systemImpl.cpp',
+
+    'binding-mri.cpp',
+    'binding-util.cpp',
+    'table-binding.cpp',
+    'etc-binding.cpp',
+    'bitmap-binding.cpp',
+    'font-binding.cpp',
+    'graphics-binding.cpp',
+    'input-binding.cpp',
+    'sprite-binding.cpp',
+    'viewport-binding.cpp',
+    'plane-binding.cpp',
+    'window-binding.cpp',
+    'tilemap-binding.cpp',
+    'audio-binding.cpp',
+    'module_rpg.cpp',
+    'filesystem-binding.cpp',
+    'windowvx-binding.cpp',
+    'tilemapvx-binding.cpp',
+    'http-binding.cpp',
+    'binding-tinygltf.cpp'
 )
 
+if steamworks == true
+    main_source += files('cusl-binding.cpp')
+endif
+
+if miniffi == true
+    main_source += files('miniffi-binding.cpp')
+    main_source += files('miniffi.cpp')
+endif
+
 global_sources += main_source
+
+if get_option('mri_includes') == ''
+    ver = get_option('mri_version')
+    if ver.version_compare('<=1.8')
+        global_args += '-DMKE_LEGACY_RUBY'
+    elif ver.version_compare('>=3.0') and compilers['cpp'].get_id() == 'clang'
+        global_args += '-fdeclspec'
+    endif
+    global_dependencies += dependency('ruby-' + ver)
+else
+    global_args += ('-I' + get_option('mri_includes'))
+    global_dependencies += compilers['cpp'].find_library(get_option('mri_library'), dirs: get_option('mri_libpath'))
+endif

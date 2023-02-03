@@ -74,6 +74,9 @@ __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
 #endif
 #endif
 
+#include "easylogging++.h"
+INITIALIZE_EASYLOGGINGPP
+
 #ifndef MKE_INIT_GL_LATER
 #define GLINIT_SHOWERROR(s) showInitError(s)
 #else
@@ -95,22 +98,22 @@ static void printGLInfo() {
     std::smatch matches;
     if (std::regex_search(renderer, matches, rgx)) {
         
-        Debug() << "Backend           :" << "Metal";
-        Debug() << "Metal Device      :" << matches[2] << "(" + matches[1].str() + ")";
-        Debug() << "Renderer Version  :" << matches[3].str();
+        LOG(INFO) << "Backend           :" << "Metal";
+        LOG(INFO) << "Metal Device      :" << matches[2] << "(" + matches[1].str() + ")";
+        LOG(INFO) << "Renderer Version  :" << matches[3].str();
         
     std::smatch vmatches;
         if (std::regex_search(version, vmatches, std::regex("\\(ANGLE (.+) git hash: .+\\)"))) {
-            Debug() << "ANGLE Version     :" << vmatches[1].str();
+            LOG(INFO) << "ANGLE Version     :" << vmatches[1].str();
         }
         return;
     }
     
-  Debug() << "Backend      :" << "OpenGL";
-  Debug() << "GL Vendor    :" << glGetStringInt(GL_VENDOR);
-  Debug() << "GL Renderer  :" << renderer;
-  Debug() << "GL Version   :" << version;
-  Debug() << "GLSL Version :" << glGetStringInt(GL_SHADING_LANGUAGE_VERSION);
+    LOG(INFO) << "Backend      :" << "OpenGL";
+    LOG(INFO) << "GL Vendor    :" << glGetStringInt(GL_VENDOR);
+    LOG(INFO) << "GL Renderer  :" << renderer;
+    LOG(INFO) << "GL Version   :" << version;
+    LOG(INFO) << "GLSL Version :" << glGetStringInt(GL_SHADING_LANGUAGE_VERSION);
 }
 
 static SDL_GLContext initGL(SDL_Window *win, Config &conf,
@@ -164,10 +167,9 @@ static void printRgssVersion(int ver) {
   const char *const makers[] = {"", "XP", "VX", "VX Ace"};
 
   char buf[128];
-  snprintf(buf, sizeof(buf), "RGSS version %d (RPG Maker %s)", ver,
-           makers[ver]);
+  snprintf(buf, sizeof(buf), "RGSS version %d (RPG Maker %s)", ver, makers[ver]);
 
-  Debug() << buf;
+  LOG(INFO) << buf;
 }
 
 static void rgssThreadError(RGSSThreadData *rtData, const std::string &msg) {
@@ -177,7 +179,7 @@ static void rgssThreadError(RGSSThreadData *rtData, const std::string &msg) {
 }
 
 static void showInitError(const std::string &msg) {
-  Debug() << msg;
+  LOG(INFO) << msg;
   SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "mke", msg.c_str(), 0);
 }
 
@@ -202,6 +204,7 @@ static void setupWindowIcon(const Config &conf, SDL_Window *win) {
 }
 
 int main(int argc, char *argv[]) {
+    START_EASYLOGGINGPP(argc, argv);
     SDL_SetHint(SDL_HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS, "0");
     SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0");
 
@@ -360,7 +363,7 @@ int main(int argc, char *argv[]) {
         if (!dataDirStr.empty()) {
             conf.gameFolder = dataDirStr;
             mke_fs::setCurrentDirectory(dataDirStr.c_str());
-            Debug() << "Current directory set to" << dataDirStr;
+            LOG(INFO) << "Current directory set to" << dataDirStr;
             conf.read(argc, argv);
             conf.readGameINI();
         }
@@ -436,7 +439,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < 1000; ++i) {
       /* We can stop waiting when the request was ack'd */
       if (rtData.rqTermAck) {
-        Debug() << "RGSS thread ack'd request after" << i * 10 << "ms";
+        LOG(INFO) << "RGSS thread ack'd request after" << i * 10 << "ms";
         break;
       }
 
@@ -455,7 +458,7 @@ int main(int argc, char *argv[]) {
           win);
 
     if (!rtData.rgssErrorMsg.empty()) {
-      Debug() << rtData.rgssErrorMsg;
+      LOG(INFO) << rtData.rgssErrorMsg;
       SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, conf.game.title.c_str(),
                                rtData.rgssErrorMsg.c_str(), win);
     }
@@ -466,7 +469,7 @@ int main(int argc, char *argv[]) {
     /* Clean up any remainin events */
     eventThread.cleanup();
 
-    Debug() << "Shutting down.";
+    LOG(INFO) << "Shutting down.";
 
     alcCloseDevice(alcDev);
     SDL_DestroyWindow(win);

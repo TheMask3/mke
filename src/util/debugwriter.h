@@ -30,7 +30,6 @@
 #include <android/log.h>
 #endif
 
-
 /* A cheap replacement for qDebug() */
 
 class Debug
@@ -65,6 +64,7 @@ public:
 		__android_log_write(ANDROID_LOG_DEBUG, "mke", buf.str().c_str());
 #else
 		std::cerr << buf.str() << std::endl;
+
 #endif
 	}
 

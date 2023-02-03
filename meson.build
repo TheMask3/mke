@@ -113,11 +113,10 @@ endif
 global_args += '-DMKE_INIT_GL_LATER'
 
 subdir('src')
-subdir('binding')
 subdir('shader')
 subdir('assets')
 
-global_include_dirs += include_directories('src', 'binding')
+global_include_dirs += include_directories('src')
 
 rpath = ''
 
