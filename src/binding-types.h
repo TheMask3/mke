@@ -25,19 +25,18 @@
 #include "binding-util.h"
 
 #if RAPI_FULL > 187
+DECL_TYPE(SDL_Surface);
 DECL_TYPE(Table);
 DECL_TYPE(Rect);
 DECL_TYPE(Color);
 DECL_TYPE(Tone);
 DECL_TYPE(Font);
-
 DECL_TYPE(Bitmap);
 DECL_TYPE(Sprite);
 DECL_TYPE(Plane);
 DECL_TYPE(Viewport);
 DECL_TYPE(Tilemap);
 DECL_TYPE(Window);
-
 DECL_TYPE(MiniFFI);
 
 #else

@@ -8,8 +8,8 @@
 #include <SDL_filesystem.h>
 
 #include "filesystemImpl.h"
-#include "util/exception.h"
-#include "util/debugwriter.h"
+#include "exception.h"
+#include "debugwriter.h"
 
 #ifdef MKE_EXP_FS
 #include <experimental/filesystem>

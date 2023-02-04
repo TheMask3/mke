@@ -13,17 +13,17 @@
 #include <vector>
 
 #include "filesystem/filesystem.h"
-#include "util/exception.h"
-#include "util/debugwriter.h"
-#include "util/sdl-util.h"
-#include "util/util.h"
+#include "exception.h"
+#include "debugwriter.h"
+#include "sdl-util.h"
+#include "util.h"
 
-#include "util/json5pp.hpp"
+#include "json5pp.hpp"
 
-#include "util/iniconfig.h"
-#include "util/encoding.h"
+#include "iniconfig.h"
+#include "encoding.h"
 
-#include "system/system.h"
+#include "system.h"
 
 
 namespace json = json5pp;

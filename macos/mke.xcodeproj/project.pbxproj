@@ -950,15 +950,15 @@
 		3B10EDA52568E95E00372D13 /* binding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binding.h; sourceTree = "<group>"; };
 		3B10EDD62568E96A00372D13 /* window-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "window-binding.cpp"; sourceTree = "<group>"; };
 		3B10EDD72568E96A00372D13 /* filesystem-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "filesystem-binding.cpp"; sourceTree = "<group>"; };
-		3B10EDD82568E96A00372D13 /* viewportelement-binding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "viewportelement-binding.h"; sourceTree = "<group>"; };
+		3B10EDD82568E96A00372D13 /* binding-viewportelement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "binding-viewportelement.h"; sourceTree = "<group>"; };
 		3B10EDD92568E96A00372D13 /* cusl-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "cusl-binding.cpp"; sourceTree = "<group>"; };
 		3B10EDDA2568E96A00372D13 /* audio-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-binding.cpp"; sourceTree = "<group>"; };
-		3B10EDDB2568E96A00372D13 /* serializable-binding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "serializable-binding.h"; sourceTree = "<group>"; };
+		3B10EDDB2568E96A00372D13 /* binding-serializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "binding-serializable.h"; sourceTree = "<group>"; };
 		3B10EDDC2568E96A00372D13 /* input-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "input-binding.cpp"; sourceTree = "<group>"; };
 		3B10EDDD2568E96A00372D13 /* windowvx-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "windowvx-binding.cpp"; sourceTree = "<group>"; };
-		3B10EDDE2568E96A00372D13 /* disposable-binding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "disposable-binding.h"; sourceTree = "<group>"; };
+		3B10EDDE2568E96A00372D13 /* binding-disposable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "binding-disposable.h"; sourceTree = "<group>"; };
 		3B10EDDF2568E96A00372D13 /* sprite-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "sprite-binding.cpp"; sourceTree = "<group>"; };
-		3B10EDE02568E96A00372D13 /* sceneelement-binding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sceneelement-binding.h"; sourceTree = "<group>"; };
+		3B10EDE02568E96A00372D13 /* binding-sceneelement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "binding-sceneelement.h"; sourceTree = "<group>"; };
 		3B10EDE12568E96A00372D13 /* tilemapvx-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "tilemapvx-binding.cpp"; sourceTree = "<group>"; };
 		3B10EDE22568E96A00372D13 /* module_rpg2.rb.xxd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module_rpg2.rb.xxd; sourceTree = "<group>"; };
 		3B10EDE42568E96A00372D13 /* bitmap-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "bitmap-binding.cpp"; sourceTree = "<group>"; };
@@ -974,7 +974,7 @@
 		3B10EDEE2568E96A00372D13 /* binding-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "binding-util.h"; sourceTree = "<group>"; };
 		3B10EDEF2568E96A00372D13 /* binding-util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "binding-util.cpp"; sourceTree = "<group>"; };
 		3B10EDF02568E96A00372D13 /* binding-mri.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "binding-mri.cpp"; sourceTree = "<group>"; };
-		3B10EDF12568E96A00372D13 /* flashable-binding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "flashable-binding.h"; sourceTree = "<group>"; };
+		3B10EDF12568E96A00372D13 /* binding-flashable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "binding-flashable.h"; sourceTree = "<group>"; };
 		3B10EDF22568E96A00372D13 /* module_rpg3.rb.xxd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module_rpg3.rb.xxd; sourceTree = "<group>"; };
 		3B10EDF32568E96A00372D13 /* module_rpg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = module_rpg.cpp; sourceTree = "<group>"; };
 		3B10EDF42568E96A00372D13 /* viewport-binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "viewport-binding.cpp"; sourceTree = "<group>"; };
@@ -1537,15 +1537,15 @@
 			children = (
 				3B10EDD62568E96A00372D13 /* window-binding.cpp */,
 				3B10EDD72568E96A00372D13 /* filesystem-binding.cpp */,
-				3B10EDD82568E96A00372D13 /* viewportelement-binding.h */,
+				3B10EDD82568E96A00372D13 /* binding-viewportelement.h */,
 				3B10EDD92568E96A00372D13 /* cusl-binding.cpp */,
 				3B10EDDA2568E96A00372D13 /* audio-binding.cpp */,
-				3B10EDDB2568E96A00372D13 /* serializable-binding.h */,
+				3B10EDDB2568E96A00372D13 /* binding-serializable.h */,
 				3B10EDDC2568E96A00372D13 /* input-binding.cpp */,
 				3B10EDDD2568E96A00372D13 /* windowvx-binding.cpp */,
-				3B10EDDE2568E96A00372D13 /* disposable-binding.h */,
+				3B10EDDE2568E96A00372D13 /* binding-disposable.h */,
 				3B10EDDF2568E96A00372D13 /* sprite-binding.cpp */,
-				3B10EDE02568E96A00372D13 /* sceneelement-binding.h */,
+				3B10EDE02568E96A00372D13 /* binding-sceneelement.h */,
 				3B10EDE12568E96A00372D13 /* tilemapvx-binding.cpp */,
 				3B10EDE22568E96A00372D13 /* module_rpg2.rb.xxd */,
 				3B10EDE42568E96A00372D13 /* bitmap-binding.cpp */,
@@ -1563,7 +1563,7 @@
 				3B10EDEE2568E96A00372D13 /* binding-util.h */,
 				3B10EDEF2568E96A00372D13 /* binding-util.cpp */,
 				3B10EDF02568E96A00372D13 /* binding-mri.cpp */,
-				3B10EDF12568E96A00372D13 /* flashable-binding.h */,
+				3B10EDF12568E96A00372D13 /* binding-flashable.h */,
 				3B10EDF22568E96A00372D13 /* module_rpg3.rb.xxd */,
 				3B10EDF32568E96A00372D13 /* module_rpg.cpp */,
 				3B10EDF42568E96A00372D13 /* viewport-binding.cpp */,

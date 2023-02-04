@@ -21,12 +21,12 @@
 
 #include "filesystem.h"
 
-#include "util/boost-hash.h"
-#include "util/debugwriter.h"
-#include "util/exception.h"
-#include "util/util.h"
-#include "display/font.h"
-#include "crypto/rgssad.h"
+#include "boost-hash.h"
+#include "debugwriter.h"
+#include "exception.h"
+#include "util.h"
+#include "font.h"
+#include "rgssad.h"
 
 #include "eventthread.h"
 #include "sharedstate.h"

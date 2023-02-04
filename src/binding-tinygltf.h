@@ -7,7 +7,7 @@
 #endif
 
 #include <time.h> // work around C++/C linkage error on some platforms
-#include "ruby.h"
+#include <ruby.h>
 
 #if __cplusplus
   #include <algorithm>

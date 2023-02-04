@@ -22,7 +22,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include "util/json5pp.hpp"
+#include "json5pp.hpp"
 
 #include <set>
 #include <string>

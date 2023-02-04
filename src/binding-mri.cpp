@@ -19,18 +19,18 @@
  ** along with mke.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "audio/audio.h"
+#include "audio.h"
 #include "filesystem/filesystem.h"
-#include "display/graphics.h"
-#include "display/font.h"
-#include "system/system.h"
+#include "graphics.h"
+#include "font.h"
+#include "system.h"
 
-#include "util/util.h"
-#include "util/sdl-util.h"
-#include "util/debugwriter.h"
-#include "util/boost-hash.h"
-#include "util/exception.h"
-#include "util/encoding.h"
+#include "util.h"
+#include "sdl-util.h"
+#include "debugwriter.h"
+#include "boost-hash.h"
+#include "exception.h"
+#include "encoding.h"
 
 #include "config.h"
 

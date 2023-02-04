@@ -40,7 +40,7 @@
 #include "settingsmenu.h"
 #include "gamecontrollerdb.txt.xxd"
 #else
-#include "system/system.h"
+#include "system.h"
 #include "filesystem/filesystem.h"
 #include "TouchBar.h"
 #endif
@@ -49,7 +49,7 @@
 #include "debugwriter.h"
 
 #ifndef __APPLE__
-#include "util/string-util.h"
+#include "string-util.h"
 #endif
 
 #include <string.h>

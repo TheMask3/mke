@@ -74,15 +74,13 @@ global_args += '-DMKE_ALCDEVICE=' + alcdev_struct
 
 
 global_include_dirs += include_directories('.',
-    'audio',
-    'crypto',
-    'display', 'display/gl', 'display/libnsgif', 'display/libnsgif/utils',
-    'etc',
     'filesystem', 'filesystem/ghc',
-    'input',
-    'net',
-    'system',
-    'util', 'util/sigslot', 'util/sigslot/adapter'
+    'glm',
+    'libnsgif', 'libnsgif/utils',
+    'reactphysics3d',
+    'sdl_opengl',
+    'sigslot', 'sigslot/adapter',
+    'theoraplay'
 )
 
 global_dependencies += [openal, zlib, bz2, sdl2, sdl_sound, pixman, physfs, theora, vorbisfile, vorbis, ogg, sdl2_ttf, freetype, sdl2_image, png, jpeg, iconv, uchardet]
@@ -110,92 +108,92 @@ main_source = files(
     'settingsmenu.cpp',
     'sharedstate.cpp',
     
-    'audio/alstream.cpp',
-    'audio/audio.cpp',
-    'audio/audiostream.cpp',
-    'audio/fluid-fun.cpp',
-    'audio/midisource.cpp',
-    'audio/sdlsoundsource.cpp',
-    'audio/soundemitter.cpp',
-    'audio/vorbissource.cpp',
+    'alstream.cpp',
+    'audio.cpp',
+    'audiostream.cpp',
+    'fluid-fun.cpp',
+    'midisource.cpp',
+    'sdlsoundsource.cpp',
+    'soundemitter.cpp',
+    'vorbissource.cpp',
     'theoraplay/theoraplay.c',
 
-    'crypto/rgssad.cpp',
+    'rgssad.cpp',
 
-    'display/autotiles.cpp',
-    'display/autotilesvx.cpp',
-    'display/bitmap.cpp',
-    'display/font.cpp',
-    'display/graphics.cpp',
-    'display/plane.cpp',
-    'display/sprite.cpp',
-    'display/tilemap.cpp',
-    'display/tilemapvx.cpp',
-    'display/viewport.cpp',
-    'display/window.cpp',
-    'display/windowvx.cpp',
+    'autotiles.cpp',
+    'autotilesvx.cpp',
+    'bitmap.cpp',
+    'font.cpp',
+    'graphics.cpp',
+    'plane.cpp',
+    'sprite.cpp',
+    'tilemap.cpp',
+    'tilemapvx.cpp',
+    'viewport.cpp',
+    'window.cpp',
+    'windowvx.cpp',
 
-    'display/libnsgif/libnsgif.c',
-    'display/libnsgif/lzw.c',
+    'libnsgif/libnsgif.c',
+    'libnsgif/lzw.c',
 
-    'display/gl/gl-debug.cpp',
-    'display/gl/gl-fun.cpp',
-    'display/gl/gl-meta.cpp',
-    'display/gl/glstate.cpp',
-    'display/gl/scene.cpp',
-    'display/gl/shader.cpp',
-    'display/gl/texpool.cpp',
-    'display/gl/tileatlas.cpp',
-    'display/gl/tileatlasvx.cpp',
-    'display/gl/tilequad.cpp',
-    'display/gl/vertex.cpp',
+    'gl-debug.cpp',
+    'gl-fun.cpp',
+    'gl-meta.cpp',
+    'glstate.cpp',
+    'scene.cpp',
+    'shader.cpp',
+    'texpool.cpp',
+    'tileatlas.cpp',
+    'tileatlasvx.cpp',
+    'tilequad.cpp',
+    'vertex.cpp',
 
-    'util/easylogging++.cpp',
-    'util/iniconfig.cpp',
-    'util/win-consoleutils.cpp',
+    'easylogging++.cpp',
+    'iniconfig.cpp',
+    'win-consoleutils.cpp',
     
-    'etc/etc.cpp',
-    'etc/table.cpp',
+    'etc.cpp',
+    'table.cpp',
 
     'filesystem/filesystem.cpp',
     'filesystem/filesystemImpl.cpp',
     
-    'input/input.cpp',
-    'input/keybindings.cpp',
+    'input.cpp',
+    'keybindings.cpp',
 
-    'net/LUrlParser.cpp',
-    'net/net.cpp',
+    'LUrlParser.cpp',
+    'net.cpp',
 
-    'system/systemImpl.cpp',
+    'systemImpl.cpp',
 
     'binding-mri.cpp',
     'binding-util.cpp',
-    'table-binding.cpp',
-    'etc-binding.cpp',
-    'bitmap-binding.cpp',
-    'font-binding.cpp',
-    'graphics-binding.cpp',
-    'input-binding.cpp',
-    'sprite-binding.cpp',
-    'viewport-binding.cpp',
-    'plane-binding.cpp',
-    'window-binding.cpp',
-    'tilemap-binding.cpp',
-    'audio-binding.cpp',
-    'module_rpg.cpp',
-    'filesystem-binding.cpp',
-    'windowvx-binding.cpp',
-    'tilemapvx-binding.cpp',
-    'http-binding.cpp',
-    'binding-tinygltf.cpp'
+    'binding-table.cpp',
+    'binding-etc.cpp',
+    'binding-bitmap.cpp',
+    'binding-font.cpp',
+    'binding-graphics.cpp',
+    'binding-input.cpp',
+    'binding-sprite.cpp',
+    'binding-viewport.cpp',
+    'binding-plane.cpp',
+    'binding-window.cpp',
+    'binding-tilemap.cpp',
+    'binding-audio.cpp',
+    'binding-filesystem.cpp',
+    'binding-windowvx.cpp',
+    'binding-tilemapvx.cpp',
+    'binding-http.cpp',
+    'binding-tinygltf.cpp',
+    'module_rpg.cpp'
 )
 
 if steamworks == true
-    main_source += files('cusl-binding.cpp')
+    main_source += files('binding-cusl.cpp')
 endif
 
 if miniffi == true
-    main_source += files('miniffi-binding.cpp')
+    main_source += files('binding-miniffi.cpp')
     main_source += files('miniffi.cpp')
 endif
 

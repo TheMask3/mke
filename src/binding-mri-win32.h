@@ -2,7 +2,7 @@
 #define BINDING_MRI_WIN32_H
 
 #include <windows.h>
-#include "util/win-consoleutils.h"
+#include "win-consoleutils.h"
 
 // Attempts to set $stdout and $stdin accordingly on Windows. Only
 // called when debug mode is on, since that's when the console
