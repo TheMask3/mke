@@ -302,12 +302,6 @@ try { exp } catch (...) {}
     // Determine whether to open a console window on... Windows
     winConsole = getEnvironmentBool("MKE_WINDOWS_CONSOLE", editor.debug);
     
-#ifdef __APPLE__
-    // Determine whether to use the Metal renderer on macOS
-    // Environment variable takes priority over the json setting
-    preferMetalRenderer = isMetalSupported() && getEnvironmentBool("MKE_MACOS_METAL", preferMetalRenderer);
-#endif
-    
     // Determine whether to allow manual selection of a game folder on startup
     // Only works on macOS atm, mainly used to test games located outside of the bundle.
     // The config is re-read after the window is already created, so some entries

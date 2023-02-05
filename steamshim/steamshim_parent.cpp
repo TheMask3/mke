@@ -23,10 +23,6 @@ typedef int PipeType;
 #endif
 #include <stdlib.h>
 
-#ifdef __APPLE__
-#include "steamshim_mac_helpers.h"
-#endif
-
 #include "steam/steam_api_flat.h"
 
 #ifdef STEAMSHIM_DEBUG
@@ -218,13 +214,7 @@ static bool launchChild(ProcessType *pid) {
     return true;      // we'll let the pipe fail if this didn't work.
 
     // we're the child.
-#ifdef __APPLE__
-  char buf[300];
-  strncpy(buf, execPath().c_str(), sizeof(buf));
-  GArgv[0] = buf;
-#else
   GArgv[0] = strdup("./" GAME_LAUNCH_NAME);
-#endif
   dbgpipe("Starting %s\n", GArgv[0]);
   execvp(GArgv[0], GArgv);
   // still here? It failed! Terminate, closing child's ends of the pipes.

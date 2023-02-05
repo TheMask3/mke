@@ -68,10 +68,6 @@ bool systemImpl::isWine() {
 #endif
 }
 
-bool systemImpl::isRosetta() {
-    return false;
-}
-
 systemImpl::WineHostType systemImpl::getRealHostType() {
 #if MKE_PLATFORM != MKE_PLATFORM_WINDOWS
     return WineHostType::Linux;
@@ -85,15 +81,12 @@ systemImpl::WineHostType systemImpl::getRealHostType() {
     
     const char *kernel = 0;
     wine_get_host_version(&kernel, 0);
-
-    if (!strcmp(kernel, "Darwin"))
-        return WineHostType::Mac;
     
     return WineHostType::Linux;
 #endif
 }
 
-// HiDPI scaling not supported outside of macOS for now
+// HiDPI scaling not supported
 int systemImpl::getScalingFactor() {
     return 1;
 }

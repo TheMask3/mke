@@ -40,10 +40,6 @@
 #include <unistd.h>
 #include <vector>
 
-#ifdef __APPLE__
-#include <iconv.h>
-#endif
-
 #ifdef __WIN32__
 #include <direct.h>
 #endif
@@ -348,42 +344,12 @@ void FileSystem::removePath(const char *path, bool reload) {
 struct CacheEnumData {
   FileSystemPrivate *p;
   std::stack<std::vector<std::string> *> fileLists;
-
-#ifdef __APPLE__
-  iconv_t nfd2nfc;
-  char buf[512];
-#endif
-
-  CacheEnumData(FileSystemPrivate *p) : p(p) {
-#ifdef __APPLE__
-    nfd2nfc = iconv_open("utf-8", "utf-8-mac");
-#endif
-  }
-
-  ~CacheEnumData() {
-#ifdef __APPLE__
-    iconv_close(nfd2nfc);
-#endif
-  }
+  CacheEnumData(FileSystemPrivate *p) : p(p) {}
+  ~CacheEnumData() {}
 
   /* Converts in-place */
   void toNFC(char *inout) {
-#ifdef __APPLE__
-    size_t srcSize = strlen(inout);
-    size_t bufSize = sizeof(buf);
-    char *bufPtr = buf;
-    char *inoutPtr = inout;
-
-    /* Reserve room for null terminator */
-    --bufSize;
-
-    iconv(nfd2nfc, &inoutPtr, &srcSize, &bufPtr, &bufSize);
-    /* Null-terminate */
-    *bufPtr = 0;
-    strcpy(inout, buf);
-#else
     (void)inout;
-#endif
   }
 };
 

@@ -1,7 +1,7 @@
 #include "miniffi.h"
 #include <assert.h>
 
-#if defined(__MINGW64__) || defined(__linux__) || defined(__APPLE__)
+#if defined(__MINGW64__) || defined(__linux__)
 mffi_value miniffi_call_intern(MINIFFI_FUNC target, MiniFFIFuncArgs *p, int nparams) {
     assert(nparams <= 10);
     return target(p->params[0], p->params[1], p->params[2], p->params[3],

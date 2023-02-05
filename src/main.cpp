@@ -44,6 +44,12 @@
 #include "gl-debug.h"
 #include "gl-fun.h"
 
+//#define NK_IMPLEMENTATION
+//#define NK_SDL_GL3_IMPLEMENTATION
+//#include "nuklear.h"
+//#include "nuklear_sdl_gl3.h"
+//static nk_context *nkCtx;
+
 #include "filesystem/filesystem.h"
 
 #include "system.h"
@@ -64,14 +70,6 @@ __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
 
 #ifdef MKE_STEAM
 #include "steamshim_child.h"
-#endif
-
-#ifdef MKE_BUILD_XCODE
-#include <Availability.h>
-#include "TouchBar.h"
-#if __MAC_OS_X_VERSION_MAX_ALLOWED < __MAC_10_15
-#define MKE_INIT_GL_LATER
-#endif
 #endif
 
 #include "easylogging++.h"
@@ -354,6 +352,8 @@ int main(int argc, char *argv[]) {
 #endif
       return 0;
     }
+
+    //nkCtx = nk_sdl_init(win);
     
 #if defined(MKE_BUILD_XCODE)
 #define DEBUG_FSELECT_MSG "Select the folder from which to load game files. This is the folder containing the game's INI."

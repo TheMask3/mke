@@ -20,7 +20,6 @@
  */
 
 #include "graphics.h"
-
 #include "audio.h"
 #include "binding.h"
 #include "bitmap.h"
@@ -44,6 +43,11 @@
 #include "input.h"
 #include "sprite.h"
 
+//#define NK_IMPLEMENTATION
+//#include "nuklear.h"
+//#include "nuklear_sdl_gl3.h"
+//static nk_context *nkCtx;
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_timer.h>
@@ -65,12 +69,11 @@
 
 #define DEF_SCREEN_W (rgssVer == 1 ? 640 : 544)
 #define DEF_SCREEN_H (rgssVer == 1 ? 480 : 416)
-
 #define DEF_FRAMERATE (rgssVer == 1 ? 40 : 60)
-
-#define DEF_MAX_VIDEO_FRAMES 30
+#define DEF_MAX_VIDEO_FRAMES 60
 #define VIDEO_DELAY 10
-#define AUDIO_DELAY 100
+#define AUDIO_DELAY 50
+#define MAX_MEMORY 1073741824
 
 typedef struct AudioQueue
 {
@@ -82,13 +85,11 @@ typedef struct AudioQueue
 static volatile AudioQueue *movieAudioQueue;
 static volatile AudioQueue *movieAudioQueueTail;
 
-
 static long readMovie(THEORAPLAY_Io *io, void *buf, long buflen)
 {
     SDL_RWops *f = (SDL_RWops *) io->userdata;
     return (long) SDL_RWread(f, buf, 1, buflen);
 } // IoFopenRead
-
 
 static void closeMovie(THEORAPLAY_Io *io)
 {
@@ -776,6 +777,7 @@ struct GraphicsPrivate {
     last_update(0), last_avg_update(0), backingScaleFactor(1), integerScaleFactor(0, 0),
     integerScaleActive(rtData->config.integerScaling.active),
     integerLastMileScaling(rtData->config.integerScaling.lastMileScaling) {
+        
         avgFPSData = std::vector<unsigned long long>();
         avgFPSLock = SDL_CreateMutex();
         glResourceLock = SDL_CreateMutex();
@@ -963,39 +965,30 @@ struct GraphicsPrivate {
     
     void redrawScreen() {
         screen.composite();
-        
         // maybe unspaghetti this later
         if (integerScaleStepApplicable() && !integerLastMileScaling)
         {
             GLMeta::blitBeginScreen(winSize);
             GLMeta::blitSource(screen.getPP().frontBuffer());
-            
             FBO::clear();
             metaBlitBufferFlippedScaled(scRes, true);
             GLMeta::blitEnd();
-            
             swapGLBuffer();
             return;
         }
-        
         if (integerScaleStepApplicable())
         {
             assert(integerScaleBuffer.tex != TEX::ID(0));
             GLMeta::blitBegin(integerScaleBuffer);
             GLMeta::blitSource(screen.getPP().frontBuffer());
-            
             GLMeta::blitRectangle(IntRect(0, 0, scRes.x, scRes.y),
                                   IntRect(0, 0, integerScaleBuffer.width, integerScaleBuffer.height),
                                   false);
-            
             GLMeta::blitEnd();
         }
-        
         GLMeta::blitBeginScreen(winSize);
         //GLMeta::blitSource(screen.getPP().frontBuffer());
-        
         Vec2i sourceSize;
-        
         if (integerScaleActive)
         {
             GLMeta::blitSource(integerScaleBuffer);
@@ -1006,16 +999,14 @@ struct GraphicsPrivate {
             GLMeta::blitSource(screen.getPP().frontBuffer());
             sourceSize = scRes;
         }
-        
         FBO::clear();
         metaBlitBufferFlippedScaled(sourceSize);
-        
         GLMeta::blitEnd();
-        
         swapGLBuffer();
-        
+
         SDL_LockMutex(avgFPSLock);
-        if (avgFPSData.size() > 40)
+
+        if ((int)avgFPSData.size() > frameRate / 4 && (int)avgFPSData.size() > 1)
             avgFPSData.erase(avgFPSData.begin());
         
         unsigned long long time = shState->runTime();

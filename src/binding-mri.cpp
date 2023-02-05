@@ -114,12 +114,9 @@ RB_METHOD(mkeDesensitize);
 RB_METHOD(mkePuts);
 
 RB_METHOD(mkePlatform);
-RB_METHOD(mkeIsMacHost);
 RB_METHOD(mkeIsWindowsHost);
 RB_METHOD(mkeIsLinuxHost);
-RB_METHOD(mkeIsUsingRosetta);
 RB_METHOD(mkeIsUsingWine);
-RB_METHOD(mkeIsReallyMacHost);
 RB_METHOD(mkeIsReallyLinuxHost);
 RB_METHOD(mkeIsReallyWindowsHost);
 
@@ -222,17 +219,12 @@ static void mriBindingInit() {
     _rb_define_module_function(mod, "desensitize", mkeDesensitize);
     _rb_define_module_function(mod, "platform", mkePlatform);
     
-    _rb_define_module_function(mod, "is_mac?", mkeIsMacHost);
-    _rb_define_module_function(mod, "is_rosetta?", mkeIsUsingRosetta);
-    
     _rb_define_module_function(mod, "is_linux?", mkeIsLinuxHost);
     
     _rb_define_module_function(mod, "is_windows?", mkeIsWindowsHost);
     _rb_define_module_function(mod, "is_wine?", mkeIsUsingWine);
-    _rb_define_module_function(mod, "is_really_mac?", mkeIsReallyMacHost);
     _rb_define_module_function(mod, "is_really_linux?", mkeIsReallyLinuxHost);
     _rb_define_module_function(mod, "is_really_windows?", mkeIsReallyWindowsHost);
-    
     
     _rb_define_module_function(mod, "user_language", mkeUserLanguage);
     _rb_define_module_function(mod, "user_name", mkeUserName);
@@ -377,43 +369,17 @@ RB_METHOD(mkePuts) {
 RB_METHOD(mkePlatform) {
     RB_UNUSED_PARAM;
     
-#if MKE_PLATFORM == MKE_PLATFORM_MACOS
-    std::string platform("macOS");
-    
-    if (mke_sys::isRosetta())
-        platform += " (Rosetta)";
-    
-#elif MKE_PLATFORM == MKE_PLATFORM_WINDOWS
+#if MKE_PLATFORM == MKE_PLATFORM_WINDOWS
     std::string platform("Windows");
     
     if (mke_sys::isWine()) {
-        platform += " (Wine - ";
-        switch (mke_sys::getRealHostType()) {
-            case mke_sys::WineHostType::Mac:
-                platform += "macOS)";
-                break;
-            default:
-                platform += "Linux)";
-                break;
-        }
+        platform += " (Wine - Linux)";
     }
 #else
     std::string platform("Linux");
 #endif
     
     return rb_utf8_str_new_cstr(platform.c_str());
-}
-
-RB_METHOD(mkeIsMacHost) {
-    RB_UNUSED_PARAM;
-    
-    return rb_bool_new(MKE_PLATFORM == MKE_PLATFORM_MACOS);
-}
-
-RB_METHOD(mkeIsUsingRosetta) {
-    RB_UNUSED_PARAM;
-    
-    return rb_bool_new(mke_sys::isRosetta());
 }
 
 RB_METHOD(mkeIsLinuxHost) {
@@ -431,11 +397,6 @@ RB_METHOD(mkeIsWindowsHost) {
 RB_METHOD(mkeIsUsingWine) {
     RB_UNUSED_PARAM;
     return rb_bool_new(mke_sys::isWine());
-}
-
-RB_METHOD(mkeIsReallyMacHost) {
-    RB_UNUSED_PARAM;
-    return rb_bool_new(mke_sys::getRealHostType() == mke_sys::WineHostType::Mac);
 }
 
 RB_METHOD(mkeIsReallyLinuxHost) {

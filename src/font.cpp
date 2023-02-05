@@ -162,11 +162,15 @@ _TTF_Font *SharedFontState::getFont(std::string family,
 {
     
     if (family.empty())
+    {
         family = p->defaultFamily;
+    }
     
 	/* Check for substitutions */
 	if (p->subs.contains(family))
-		family = p->subs[family];
+    {
+        family = p->subs[family];
+    }
 
 	/* Find out if the font asset exists */
 	const FontSet &req = p->sets[family];

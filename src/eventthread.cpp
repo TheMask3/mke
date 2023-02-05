@@ -35,22 +35,11 @@
 
 #include "sharedstate.h"
 #include "graphics.h"
-
-#ifndef MKE_BUILD_XCODE
 #include "settingsmenu.h"
 #include "gamecontrollerdb.txt.xxd"
-#else
-#include "system.h"
-#include "filesystem/filesystem.h"
-#include "TouchBar.h"
-#endif
-
 #include "al-util.h"
 #include "debugwriter.h"
-
-#ifndef __APPLE__
 #include "string-util.h"
-#endif
 
 #include <string.h>
 
@@ -144,10 +133,7 @@ void EventThread::process(RGSSThreadData &rtData)
     
     initALCFunctions(rtData.alcDev);
     
-    // XXX this function breaks input focus on OSX
-#ifndef __APPLE__
     SDL_SetEventFilter(eventFilter, &rtData);
-#endif
     
     fullscreen = rtData.config.fullscreen;
     int toggleFSMod = rtData.config.anyAltToggleFS ? KMOD_ALT : KMOD_LALT;
@@ -511,18 +497,12 @@ void EventThread::process(RGSSThreadData &rtData)
                         
                     case REQUEST_MESSAGEBOX :
                     {
-#ifndef __APPLE__
                         // Try to format the message with additional newlines
                         std::string message = copyWithNewlines((const char*) event.user.data1,
                                                                70);
                         SDL_ShowSimpleMessageBox(event.user.code,
                                                  rtData.config.windowTitle.c_str(),
                                                  message.c_str(), win);
-#else
-                        SDL_ShowSimpleMessageBox(event.user.code,
-                                                 rtData.config.windowTitle.c_str(),
-                                                 (const char*)event.user.data1, win);
-#endif
                         free(event.user.data1);
                         msgBoxDone.set();
                         break;
@@ -654,8 +634,9 @@ void EventThread::cleanup()
     SDL_Event event;
     
     while (SDL_PollEvent(&event))
-        if ((event.type - usrIdStart) == REQUEST_MESSAGEBOX)
-            free(event.user.data1);
+    {
+        if ((event.type - usrIdStart) == REQUEST_MESSAGEBOX) free(event.user.data1);
+    }
 }
 
 void EventThread::resetInputStates()

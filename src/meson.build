@@ -50,12 +50,15 @@ if host_system == 'windows'
 endif
 if build_static == true
     if host_system == 'windows'
-        global_link_args += ['-Wl,-Bstatic', '-lgcc', '-lstdc++', '-lpthread', '-Wl,-Bdynamic']
+        global_link_args += ['-Wl,-Bstatic', '-lgcc', '-lstdc++', '-lopengl32', '-lpthread', '-Wl,-Bdynamic']
     else
         global_link_args += ['-static-libgcc', '-static-libstdc++']
     endif
     global_args += '-DAL_LIBTYPE_STATIC'
 endif
+
+# Disable this when compilation succeed
+# global_link_args += ['-w']
 
 foreach l : explicit_libs.split(';')
         if l != ''
@@ -78,7 +81,6 @@ global_include_dirs += include_directories('.',
     'glm',
     'libnsgif', 'libnsgif/utils',
     'reactphysics3d',
-    'sdl_opengl',
     'sigslot', 'sigslot/adapter',
     'theoraplay'
 )

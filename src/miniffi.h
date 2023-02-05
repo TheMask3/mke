@@ -4,7 +4,7 @@
 
 #define MINIFFI_MAX_ARGS 10l
 
-#if defined(__linux__) || defined(__APPLE__)
+#if defined(__linux__)
     typedef unsigned long mffi_value;
     typedef mffi_value (*MINIFFI_FUNC)(mffi_value, mffi_value,
                                        mffi_value, mffi_value,
