@@ -13,7 +13,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "common.h"
+#include "sdl_opengl/common.h"
 
 /* OpenGL EXT extensions */
 /* Those are extensions that are not blessed by ARB committee but were

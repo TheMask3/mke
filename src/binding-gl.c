@@ -15,7 +15,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "common.h"
+#include "sdl_opengl/common.h"
 
 void gl_init_enums(VALUE);
 void gl_init_functions_1_0__1_1(VALUE);

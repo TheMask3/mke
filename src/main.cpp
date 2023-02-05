@@ -44,12 +44,6 @@
 #include "gl-debug.h"
 #include "gl-fun.h"
 
-//#define NK_IMPLEMENTATION
-//#define NK_SDL_GL3_IMPLEMENTATION
-//#include "nuklear.h"
-//#include "nuklear_sdl_gl3.h"
-//static nk_context *nkCtx;
-
 #include "filesystem/filesystem.h"
 
 #include "system.h"

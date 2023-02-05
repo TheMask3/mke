@@ -17,6 +17,8 @@ uchardet = dependency('uchardet', static: build_static)
 # Add this later when we can replace theora with dav1d
 # dav1d = dependancy('dav1d', static: build_static)
 
+global_args += '-DIMGUI_IMPL_OPENGL3'
+
 if host_system == 'windows'
     bz2 = dependency('bzip2', static: build_static)
     iconv = compilers['cpp'].find_library('iconv', static: build_static)
@@ -50,7 +52,7 @@ if host_system == 'windows'
 endif
 if build_static == true
     if host_system == 'windows'
-        global_link_args += ['-Wl,-Bstatic', '-lgcc', '-lstdc++', '-lopengl32', '-lpthread', '-Wl,-Bdynamic']
+        global_link_args += ['-Wl,-Bstatic', '-lgcc', '-lstdc++', '-lpthread', '-Wl,-Bdynamic']
     else
         global_link_args += ['-static-libgcc', '-static-libstdc++']
     endif
@@ -79,6 +81,7 @@ global_args += '-DMKE_ALCDEVICE=' + alcdev_struct
 global_include_dirs += include_directories('.',
     'filesystem', 'filesystem/ghc',
     'glm',
+    'sdl_opengl',
     'libnsgif', 'libnsgif/utils',
     'reactphysics3d',
     'sigslot', 'sigslot/adapter',
@@ -119,9 +122,9 @@ main_source = files(
     'soundemitter.cpp',
     'vorbissource.cpp',
     'theoraplay/theoraplay.c',
-
+    
     'rgssad.cpp',
-
+    
     'autotiles.cpp',
     'autotilesvx.cpp',
     'bitmap.cpp',
@@ -134,10 +137,10 @@ main_source = files(
     'viewport.cpp',
     'window.cpp',
     'windowvx.cpp',
-
+    
     'libnsgif/libnsgif.c',
     'libnsgif/lzw.c',
-
+    
     'gl-debug.cpp',
     'gl-fun.cpp',
     'gl-meta.cpp',
@@ -149,25 +152,25 @@ main_source = files(
     'tileatlasvx.cpp',
     'tilequad.cpp',
     'vertex.cpp',
-
+    
     'easylogging++.cpp',
     'iniconfig.cpp',
     'win-consoleutils.cpp',
     
     'etc.cpp',
     'table.cpp',
-
+    
     'filesystem/filesystem.cpp',
     'filesystem/filesystemImpl.cpp',
     
     'input.cpp',
     'keybindings.cpp',
-
+    
     'LUrlParser.cpp',
     'net.cpp',
-
+    
     'systemImpl.cpp',
-
+    
     'binding-mri.cpp',
     'binding-util.cpp',
     'binding-table.cpp',
@@ -187,6 +190,7 @@ main_source = files(
     'binding-tilemapvx.cpp',
     'binding-http.cpp',
     'binding-tinygltf.cpp',
+    
     'module_rpg.cpp'
 )
 

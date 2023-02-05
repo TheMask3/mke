@@ -43,11 +43,6 @@
 #include "input.h"
 #include "sprite.h"
 
-//#define NK_IMPLEMENTATION
-//#include "nuklear.h"
-//#include "nuklear_sdl_gl3.h"
-//static nk_context *nkCtx;
-
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_timer.h>

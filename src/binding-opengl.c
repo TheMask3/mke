@@ -1,4 +1,4 @@
-#include "common.h"
+#include "sdl_opengl/common.h"
 
 void Init_gl(VALUE);
 

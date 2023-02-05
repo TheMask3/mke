@@ -13,7 +13,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "common.h"
+#include "sdl_opengl/common.h"
 
 #define UNIFORMMATRIX_FUNC(_x_,_y_) \
 static VALUE \

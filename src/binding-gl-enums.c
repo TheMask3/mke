@@ -3,7 +3,7 @@
    source: https://www.opengl.org/registry/oldspecs/enumext.spec
 */
 
-#include "common.h"
+#include "sdl_opengl/common.h"
 void gl_init_enums(VALUE module)
 {
 	rb_define_const(module, "GL_TRUE", Qtrue);

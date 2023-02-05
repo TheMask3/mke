@@ -1,4 +1,4 @@
-#include "common.h"
+#include "sdl_opengl/common.h"
 
 #ifdef HAVE_DLFCN_H
 #include <dlfcn.h>

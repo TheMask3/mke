@@ -1,4 +1,4 @@
-#include "common.h"
+#include "sdl_opengl/common.h"
 
 struct buffer {
   VALUE glimpl;

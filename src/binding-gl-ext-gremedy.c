@@ -13,7 +13,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "common.h"
+#include "sdl_opengl/common.h"
 
 /* Graphic Remedy extensions */
 

@@ -13,7 +13,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "common.h"
+#include "sdl_opengl/common.h"
 
 /*
 	GL_APPLE_flush_buffer_range -> actually ARB_map_buffer_range

@@ -3,7 +3,7 @@ project('mke', 'c', 'cpp', version: '2.4', meson_version: '>=0.56.0', default_op
 host_system = host_machine.system()
 
 if host_system == 'darwin'
-    error('\nThis Meson project no longer supports macOS. Please use the Xcode project instead.')
+    error('\nThis Meson project does not support macOS.')
 endif
 
 xxd = find_program('xxd', native: true)

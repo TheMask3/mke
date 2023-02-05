@@ -26,7 +26,7 @@
 
 #include <ctype.h>
 
-#include "gl.h"
+#include "gl-mesa.h"
 
 #include "gl-enums.h"
 #include "gl-error.h"
